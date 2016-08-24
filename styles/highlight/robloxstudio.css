@@ -1,0 +1,82 @@
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: white;
+  color: black;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: rgb(0, 127, 0);
+}
+
+.hljs-built_in,
+.hljs-deletion,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+  color: rgb(0, 0, 127);
+    font-weight: bold;
+}
+
+
+.hljs-string,
+.hljs-meta .hljs-meta-string
+ {
+    color: rgb(127, 0, 127);
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-doctag,
+.hljs-regexp {
+  color: rgb(0, 127, 127);
+}
+
+pre {
+    background-color: white;
+    border-radius: 0px;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: black;
+}
+
+/* Solarized Yellow */
+.hljs-attribute,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-class .hljs-title,
+.hljs-type {
+  color: #b58900;
+}
+
+/* Solarized Orange */
+.hljs-symbol,
+.hljs-bullet,
+.hljs-subst,
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-link {
+  color: #cb4b16;
+}
+
+.hljs-formula {
+  background: #eee8d5;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
