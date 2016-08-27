@@ -1,0 +1,4 @@
+[submodule "docs"]
+	path = docs
+	url = https://www.github.com/dandevpc/dEngine.git
+	branch = gh-pages
