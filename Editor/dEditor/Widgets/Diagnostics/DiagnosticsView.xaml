@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="dEditor.Widgets.Diagnostics.DiagnosticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:dEditor.Widgets.Diagnostics"
+             xmlns:treeListView="clr-namespace:dEditor.Framework.Controls.TreeListView"
+             xmlns:sharpTreeView="clr-namespace:dEditor.Widgets.Diagnostics.SharpTreeView"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600" d:DataContext="{d:DesignInstance local:DiagnosticsViewModel}">
+    <UserControl.Resources>
+        <Style x:Key="StretchItem" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+        <sharpTreeView:SharpGridView x:Key="GridView" AllowsColumnReorder="False">
+            <GridView.Columns>
+                <GridViewColumn Header="Name" Width="123">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <sharpTreeView:SharpTreeNodeView />
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Header="Value" Width="Auto">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate DataType="local:StatsItemTreeNode">
+                            <TextBlock Text="{Binding Value}" />
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+            </GridView.Columns>
+        </sharpTreeView:SharpGridView>
+    </UserControl.Resources>
+    <sharpTreeView:SharpTreeView x:Name="Tree" BorderThickness="0" ShowRoot="False" Root="{Binding RootNode}" View="{StaticResource GridView}" ItemContainerStyle="{StaticResource StretchItem}">
+    </sharpTreeView:SharpTreeView>
+</UserControl>

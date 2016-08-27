@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="dEditor.Widgets.MaterialEditor.Nodes.NodePin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:dEditor.Widgets.MaterialEditor.Nodes"
+             xmlns:materialEditor="clr-namespace:dEditor.Widgets.MaterialEditor"
+             mc:Ignorable="d"
+             x:Name="PinControl"
+             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance local:NodePin}">
+    <UserControl.Resources>
+        <materialEditor:InOutToAlignmentConverter x:Key="InOutConverter"/>
+    </UserControl.Resources>
+    <Button HorizontalAlignment="{Binding Mode, ElementName=PinControl, Converter={StaticResource InOutConverter}}" Style="{DynamicResource MaterialDesignFlatButton}" FontWeight="Normal" FontSize="12">
+        <DockPanel x:Name="Dock" LastChildFill="True">
+            <Ellipse DockPanel.Dock="Right" x:Name="PinCircle" Cursor="Cross" Width="16" Height="16" Fill="{Binding PinBrush, ElementName=PinControl}">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform X="-8" Y="0"/>
+                </Ellipse.RenderTransform>
+                <Ellipse.Effect>
+                    <DropShadowEffect ShadowDepth="0"  BlurRadius="2"/>
+                </Ellipse.Effect>
+            </Ellipse>
+            <TextBlock DockPanel.Dock="Right" x:Name="NodeLabel" Text="{Binding Header, ElementName=PinControl}" Foreground="Black" FontFamily="Roboto" VerticalAlignment="Center"/>
+        </DockPanel>
+    </Button>
+</UserControl>

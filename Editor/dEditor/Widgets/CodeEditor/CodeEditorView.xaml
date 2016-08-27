@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="dEditor.Widgets.CodeEditor.CodeEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:dEditor.Widgets.CodeEditor"
+             xmlns:syntaxeditor="http://schemas.actiprosoftware.com/winfx/xaml/syntaxeditor"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=local:CodeEditorViewModel, IsDesignTimeCreatable=True}"
+             cal:Bind.AtDesignTime="True"
+             d:DesignHeight="300" d:DesignWidth="300">
+	<Grid>
+		<DockPanel LastChildFill="True">
+			<DockPanel.LayoutTransform>
+				<ScaleTransform 
+            CenterX="0" CenterY="0"
+            ScaleX="{Binding ZoomScale}"
+            ScaleY="{Binding ZoomScale}"/>
+			</DockPanel.LayoutTransform>
+
+            <avalonedit:TextEditor x:Name="TextEditor"
+				IsReadOnly="{Binding IsReadOnly}"
+				FontFamily="{Binding FontFamily}"
+				FontSize="{Binding FontSize}"
+                                   Foreground="{Binding ForegroundBrush}"
+				ShowLineNumbers="True"
+				DockPanel.Dock="Left"
+				SyntaxHighlighting="{Binding SyntaxHighlighting, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+
+                <i:Interaction.Behaviors>
+                    <local:AvalonEditBehaviour 
+                        Text="{Binding Path=LuaSourceContainer.Source, Mode=TwoWay, UpdateSourceTrigger=Default}"
+                        />
+                </i:Interaction.Behaviors>
+                <avalonedit:TextEditor.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Command="Cut"/>
+                        <MenuItem Command="Copy"/>
+                        <MenuItem Command="Paste"/>
+                        <MenuItem Command="Delete"/>
+                        <Separator/>
+                        <MenuItem Command="SelectAll"/>
+                        <Separator/>
+                        <MenuItem Header="Breakpoint">
+                            <MenuItem Header="Insert Breakpoint" Command="{Binding InsertBreakpointCommand}"/>
+                        </MenuItem>
+                        <MenuItem Header="Add Watch"/>
+                        <Separator/>
+                        <MenuItem Header="Comment Selection"/>
+                        <MenuItem Header="Uncomment Selection"/>
+                        <MenuItem Header="Toggle Comment Selection"/>
+                        <Separator/>
+                        <MenuItem Header="Expand All Folds"/>
+                        <MenuItem Header="Collapse All Folds"/>
+                        <Separator/>
+                        <MenuItem Command="{Binding ZoomInCommand}"/>
+                        <MenuItem Command="{Binding ZoomOutCommand}"/>
+                    </ContextMenu>
+                </avalonedit:TextEditor.ContextMenu>
+            </avalonedit:TextEditor>
+        </DockPanel>
+	</Grid>
+</UserControl>

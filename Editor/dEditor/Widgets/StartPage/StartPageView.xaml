@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="dEditor.Widgets.StartPage.StartPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:services="clr-namespace:dEditor.Framework.Services"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600"
+             x:Name="UserControl"
+             Background="White">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <Style x:Key="HyperlinkButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter Margin="4"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Hyperlink}">
+            <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <DockPanel LastChildFill="True">
+            <Grid Background="#EEE" Width="330">
+                <Grid Margin="22, 36, 22, 0">
+                    <Image Source="/dEditor;component/Content/Icons/logo_small.png" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130" />
+
+                    <StackPanel Margin="0, 20">
+                        <Label FontSize="16" Margin="0, 52, 0, 0">Start</Label>
+                        <Button Style="{StaticResource HyperlinkButton}">
+                            <Hyperlink FontSize="13.333" Command="{Binding ElementName=UserControl, Path=DataContext.NewProjectCommand}">
+                                New Project...
+                            </Hyperlink>
+                        </Button>
+                        <Button Style="{StaticResource HyperlinkButton}">
+                            <Hyperlink FontSize="13.333" Command="{Binding ElementName=UserControl, Path=DataContext.OpenProjectCommand}">
+                                Open Project...
+                            </Hyperlink>
+                        </Button>
+                        <Button Style="{StaticResource HyperlinkButton}">
+                            <Hyperlink FontSize="13.333" Command="{Binding ElementName=UserControl, Path=DataContext.TeamBuildConnect}">
+                                Connect to TeamBuild
+                            </Hyperlink>
+                        </Button>
+                        <Label FontSize="16" Margin="0, 52, 0, 0">Recent</Label>
+                        <Label x:Name="NoRecentProjectsLabel" Visibility="{Binding NoRecentProjects, Converter={StaticResource BoolToVis}, FallbackValue=Visible}">No recent projects.</Label>
+                        <ItemsControl x:Name="RecentProjectPanel" ItemsSource="{Binding RecentProjects}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Label>
+                                        <Hyperlink FontSize="13.333" Command="{Binding ElementName=UserControl, Path=DataContext.OpenProjectCommand}" CommandParameter="{Binding}">
+                                            <Run Text="{Binding Name}" TextDecorations="{x:Null}"/>
+                                        </Hyperlink>
+                                    </Label>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Background="{DynamicResource WhiteBrush}" />
+        </DockPanel>
+    </ScrollViewer>
+</UserControl>

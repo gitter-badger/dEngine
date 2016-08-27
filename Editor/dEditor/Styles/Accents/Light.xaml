@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:dEditor.Styles.Accents">
+    <SolidColorBrush x:Key="BackgroundPrimary" Color="White"/>
+    <SolidColorBrush x:Key="BackgroundSecondary" Color="#EEE"/>
+    <SolidColorBrush x:Key="BorderPrimary" Color="#CCC"/>
+    <SolidColorBrush x:Key="AccentPrimary" Color="#4281F4"/>
+</ResourceDictionary>

@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="dEditor.Widgets.Properties.Inspectors.Colour.ColourEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:colour="clr-namespace:dEditor.Widgets.Properties.Inspectors.Colour"
+             xmlns:colourPicker="clr-namespace:dEditor.Framework.Controls.ColourPicker"
+             xmlns:services="clr-namespace:dEditor.Framework.Services"
+             xmlns:utility="clr-namespace:dEditor.Utility"
+             mc:Ignorable="d" 
+             d:DesignHeight="24" d:DesignWidth="300" d:DataContext="{d:DesignInstance colour:ColourEditorViewModel}">
+    <UserControl.Resources>
+        <colour:ColourConverter x:Key="ColourConverter" />
+        <utility:BrushConverter x:Key="BrushConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ToggleButton x:Name="ColourPickerButton" IsHitTestVisible="{Binding ElementName=ColourPickerPopup, Path=IsOpen, Mode=OneWay, Converter={StaticResource InverseBoolToVisConverter}}">
+                <ToggleButton.Template>
+                    <ControlTemplate>
+                        <Grid Margin="0, 0, 2, 0">
+                            <Image Source="/dEditor;component/Content/Icons/transparency.png"/>
+                            <Border Background="{Binding Path=Value, Converter={StaticResource BrushConverter}}" BorderThickness="1" BorderBrush="#CCC"/>
+                        </Grid>
+                    </ControlTemplate>
+                </ToggleButton.Template>
+            </ToggleButton>
+            <TextBox Grid.Column="1" BorderBrush="#CCC" services:InputBindingManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" Text="{Binding StringValue, TargetNullValue='0, 0, 0, 1'}" />
+        </Grid>
+
+        <Popup x:Name="ColourPickerPopup"
+                        StaysOpen="False" 
+                        Placement="Top"
+                        IsOpen="{Binding IsChecked, ElementName=ColourPickerButton}" 
+                        PlacementTarget="{Binding ElementName=ColourPickerButton}">
+            <colourPicker:ColourPicker BorderThickness="1" BorderBrush="#1883D7"/>
+        </Popup>
+    </Grid>
+</UserControl>

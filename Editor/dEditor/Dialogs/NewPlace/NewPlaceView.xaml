@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="dEditor.Dialogs.NewPlace.NewPlaceView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:utility="clr-namespace:dEditor.Utility"
+			 xmlns:cal="http://www.caliburnproject.org"
+			 xmlns:services="clr-namespace:dEditor.Framework.Services"
+			 xmlns:newPlace="clr-namespace:dEditor.Dialogs.NewPlace"
+			 xmlns:local="clr-namespace:dEditor.Dialogs.ProjectProperties"
+			 mc:Ignorable="d" 
+			 x:Name="Root"
+			 d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{x:Type newPlace:NewPlaceViewModel}">
+	<Grid>
+		<StackPanel Background="#EEE">
+			<ListBox ItemsSource="{Binding Templates}" SelectedItem="{Binding SelectedTemplate}" Background="White">
+				<ListBox.ItemContainerStyle>
+					<Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource CustomListBoxItem}">
+						<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+						<Setter Property="Height" Value="64"/>
+						<Setter Property="Padding" Value="4"/>
+					</Style>
+				</ListBox.ItemContainerStyle>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate DataType="{x:Type local:TemplateItem}">
+						<Grid>
+							<Image Width="64" Height="64" Stretch="None" Source="{Binding Icon}" HorizontalAlignment="Left"/>
+							<StackPanel Margin="70, 0, 0, 0">
+								<TextBlock Margin="0, 4, 0, 0" Text="{Binding Name}" FontSize="16"/>
+								<TextBlock Text="{Binding Description}" TextWrapping="Wrap" FontSize="13"/>
+							</StackPanel>
+						</Grid>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ListBox>
+			<TextBlock Foreground="DarkGray" Margin="5, 4, 4, 0" FontSize="12" FontWeight="Normal" VerticalAlignment="Top" HorizontalAlignment="Left">Project Name</TextBlock>
+			<TextBox Margin="4, 4, 4, 2"  Text="{Binding ElementName=Root, Path=DataContext.PlaceName}" />
+			<TextBlock Foreground="DarkGray" Margin="5, 4, 4, 0" FontSize="12" FontWeight="Normal" VerticalAlignment="Top" HorizontalAlignment="Left">Description</TextBlock>
+			<TextBox Margin="4, 2, 4, 4" Text="{Binding ElementName=Root, Path=DataContext.PlaceDescription}" Height="64" TextWrapping="Wrap" AcceptsReturn="True" />
+		</StackPanel>
+
+		<Border BorderThickness="0, 1, 0, 0" BorderBrush="#CCC" Background="White" VerticalAlignment="Bottom" Height="42">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+				<Button Margin="4" FontSize="12" cal:Message.Attach="[Click] = [Create()]"  Style="{DynamicResource MaterialDesignFlatButton}" Foreground="{DynamicResource AccentPrimary}" FontWeight="Normal" >CREATE</Button>
+				<Button Margin="4" FontSize="12" cal:Message.Attach="[Click] = [Cancel()]" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="Black" FontWeight="Normal">CANCEL</Button>
+			</StackPanel>
+		</Border>
+	</Grid>
+</UserControl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="dEditor.Dialogs.NewProject.NewProjectView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:cal="http://www.caliburnproject.org"
+			 mc:Ignorable="d"
+			 d:DesignHeight="621" d:DesignWidth="939">
+	<DockPanel LastChildFill="True">
+
+		<Grid Background="White" DockPanel.Dock="Bottom" Height="156">
+			<DockPanel LastChildFill="True" Margin="4, 4, 300, 0">
+				<Button FontWeight="Normal" Style="{DynamicResource MaterialDesignFlatButton}" DockPanel.Dock="Right" Margin="0, 0, 0, 53" cal:Message.Attach="[Click] = [Browse()]" VerticalAlignment="Center" HorizontalAlignment="Left" Height="26">Browse...</Button>
+				<StackPanel DockPanel.Dock="Left">
+					<Grid Margin="4">
+						<TextBlock FontSize="13" VerticalAlignment="Center">Name:</TextBlock>
+						<TextBox Margin="80, 0, 0, 0" Text="{Binding Name}"/>
+					</Grid>
+					<Grid Margin="4">
+						<TextBlock FontSize="13" VerticalAlignment="Center">Location:</TextBlock>
+						<TextBox Margin="80, 0, 0, 0" Text="{Binding Location}"/>
+					</Grid>
+				</StackPanel>
+			</DockPanel>
+			<Button FontWeight="Normal" Style="{DynamicResource MaterialDesignFlatButton}" cal:Message.Attach="[Click] = [Cancel()]" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10" Width="75" Height="31">Cancel</Button>
+			<Button FontWeight="Normal" Style="{DynamicResource MaterialDesignFlatButton}" cal:Message.Attach="[Click] = [Create()]" IsEnabled="{Binding CanCreate}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,90,10" Width="75" Height="31">OK</Button>
+		</Grid>
+
+		<Grid Background="White">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="300"/>
+			</Grid.ColumnDefinitions>
+
+			<Grid Grid.Column="0">
+				<ListView BorderThickness="1, 0, 1, 1" BorderBrush="#CCC" Background="#EEE" ItemsSource="{Binding Templates}" SelectedItem="{Binding SelectedTemplate}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Grid>
+								<Image Margin="8, 0, 0, 0" Source="{Binding Source}" Width="32" Height="32" VerticalAlignment="Center" HorizontalAlignment="Left" />
+								<Label Margin="52, 0, 0, 0" Content="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+							</Grid>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ListView>
+			</Grid>
+
+			<Border Grid.Column="1" BorderThickness="0" BorderBrush="White" >
+				<StackPanel Margin="12">
+					<Label Margin="-4, 0, 0, 0" FontFamily="Roboto Light" FontSize="20" HorizontalAlignment="Left" Content="{Binding Path=SelectedTemplate.Name}" />
+					<Image Margin="0, 4, 0, 0" Source="{Binding Path=SelectedTemplate.Thumbnail}" Width="197" Height="115" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+				</StackPanel>
+			</Border>
+
+		</Grid>
+
+	</DockPanel>
+</UserControl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

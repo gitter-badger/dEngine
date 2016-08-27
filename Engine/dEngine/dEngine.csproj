@@ -1,0 +1,820 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9CEB02F6-9904-424A-9263-7AC95A867129}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>dEngine</RootNamespace>
+    <AssemblyName>dEngine</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\dEngine.XML</DocumentationFile>
+    <PostSharpConstraintVerificationEnabled>True</PostSharpConstraintVerificationEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\dEngine.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>dEngine.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>dEngine.XML</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>..\dEditor\bin\Debug\dEngine.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>..\dEditor\bin\Release\dEngine.XML</DocumentationFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="API.cs" />
+    <Compile Include="Data\ProtectedSource.cs" />
+    <Compile Include="Enums\ActuatorType.cs" />
+    <Compile Include="Enums\AdapterConnection.cs" />
+    <Compile Include="Enums\DownsampleSize.cs" />
+    <Compile Include="Enums\AttenuationType.cs" />
+    <Compile Include="Enums\BlurMode.cs" />
+    <Compile Include="Enums\ColourBlindness.cs" />
+    <Compile Include="Enums\EngineMode.cs" />
+    <Compile Include="Enums\AvatarSize.cs" />
+    <Compile Include="Enums\CameraType.cs" />
+    <Compile Include="Enums\ContentType.cs" />
+    <Compile Include="Enums\DecalType.cs" />
+    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\MaterialDomain.cs" />
+    <Compile Include="Enums\InOut.cs" />
+    <Compile Include="Enums\SampleCount.cs" />
+    <Compile Include="Enums\ShadingModel.cs" />
+    <Compile Include="Enums\ShadowFormat.cs" />
+    <Compile Include="Enums\ShadowMode.cs" />
+    <Compile Include="Graphics\Atmosphere\Atmosphere.cs" />
+    <Compile Include="Graphics\Shadows.cs" />
+    <Compile Include="Instances\Attributes\IValueAttribute.cs" />
+    <Compile Include="Instances\Attributes\NodeSlotAttribute.cs" />
+    <Compile Include="Instances\Attributes\WarningAttribute.cs" />
+    <Compile Include="Instances\Cameras\Camera.Frustum.cs" />
+    <Compile Include="Instances\Diagnostics\DebuggerManager.cs" />
+    <Compile Include="Instances\Explosion.cs" />
+    <Compile Include="Instances\GUI\Animation\GuiAnimation.cs" />
+    <Compile Include="Instances\GUI\Animation\Storyboard.cs" />
+    <Compile Include="Instances\GUI\Animation\DoubleAnimation.cs" />
+    <Compile Include="Instances\GUI\Animation\UDim2Animation.cs" />
+    <Compile Include="Instances\GUI\Effects\CustomTextRenderer.cs" />
+    <Compile Include="Instances\Hint.cs" />
+    <Compile Include="Instances\Materials\MaterialBase.cs" />
+    <Compile Include="Instances\Materials\Material.cs" />
+    <Compile Include="Instances\Materials\MaterialInstance.cs" />
+    <Compile Include="Instances\Materials\Node.cs" />
+    <Compile Include="Instances\Materials\Nodes\ParameterNode.cs" />
+    <Compile Include="Instances\Materials\Nodes\FinalNode.cs" />
+    <Compile Include="Instances\Materials\Nodes\TextureParameterNode.cs" />
+    <Compile Include="Instances\Materials\Slot.cs" />
+    <Compile Include="Instances\Materials\SlotType.cs" />
+    <Compile Include="Instances\Message.cs" />
+    <Compile Include="Instances\PostEffects\LensFlareEffect.cs" />
+    <Compile Include="Instances\Scripting\BindableEvent.cs" />
+    <Compile Include="Instances\Scripting\BindableFunction.cs" />
+    <Compile Include="Instances\Values\BoolValue.cs" />
+    <Compile Include="Instances\Values\IntValue.cs" />
+    <Compile Include="Instances\Values\RayValue.cs" />
+    <Compile Include="Instances\Values\Vector4Value.cs" />
+    <Compile Include="Serializer\V1\Inst.cs" />
+    <Compile Include="Services\ContextActionService.cs" />
+    <Compile Include="Services\LoginService.cs" />
+    <Compile Include="Settings\User\UserAnalyticsSettings.cs" />
+    <Compile Include="Types\BinaryData.cs" />
+    <Compile Include="Types\LuaAction.cs">
+      <DependentUpon>LuaAction.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Types\LuaTuple.cs">
+      <DependentUpon>LuaTuple.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Types\FontFamily.cs" />
+    <Compile Include="Types\MaterialNodeCollection.cs" />
+    <Compile Include="Utility\Collections\ArrayListEx.cs" />
+    <Compile Include="Utility\Collections\OrderedDictionary.cs" />
+    <Compile Include="Utility\Extensions\BoundingBoxExtensions.cs" />
+    <Compile Include="Utility\SerializationAttributes.cs" />
+    <Compile Include="Utility\Extensions\EnumExtensions.cs" />
+    <Compile Include="Enums\FriendStatus.cs" />
+    <Compile Include="Enums\GpuVendor.cs" />
+    <Compile Include="Enums\InputApi.cs" />
+    <Compile Include="Enums\ListenerType.cs" />
+    <Compile Include="Enums\LogLevel.cs" />
+    <Compile Include="Enums\MouseBehaviour.cs" />
+    <Compile Include="Enums\PathStatus.cs" />
+    <Compile Include="Enums\PlaneIntersection.cs" />
+    <Compile Include="Enums\Projection.cs" />
+    <Compile Include="Enums\RenderPriority.cs" />
+    <Compile Include="Enums\ReverbType.cs" />
+    <Compile Include="Enums\SaveFilter.cs" />
+    <Compile Include="Enums\ScalingMode.cs" />
+    <Compile Include="Enums\ScriptIdentity.cs" />
+    <Compile Include="Enums\ScrollBarVisibility.cs" />
+    <Compile Include="Enums\SimulationState.cs" />
+    <Compile Include="Enums\SoundType.cs" />
+    <Compile Include="Enums\SpeakerConfiguration.cs" />
+    <Compile Include="Enums\SpeakerType.cs" />
+    <Compile Include="Enums\TeamBalanceMethod.cs" />
+    <Compile Include="Enums\TextureDimension.cs" />
+    <Compile Include="Enums\Universe.cs" />
+    <Compile Include="Data\AssetBase.cs" />
+    <Compile Include="Data\AudioData.cs" />
+    <Compile Include="Data\Texture.cs" />
+    <Compile Include="Enums\UnreliableSizeBehaviour.cs" />
+    <Compile Include="Enums\WindowMode.cs" />
+    <Compile Include="Graphics\ConstantBuffer.cs" />
+    <Compile Include="Data\Cubemap.cs" />
+    <Compile Include="Graphics\IConstantBufferData.cs" />
+    <Compile Include="Graphics\MaterialInfo.cs" />
+    <Compile Include="Graphics\PhysicsDebugDraw.cs" />
+    <Compile Include="Graphics\WorldRenderer.cs" />
+    <Compile Include="Data\Geometry.cs" />
+    <Compile Include="Graphics\GfxShader.cs" />
+    <Compile Include="Graphics\SphericalHarmonics.cs" />
+    <Compile Include="Graphics\Structs\MaterialConfig.cs" />
+    <Compile Include="Graphics\Structs\Point.cs" />
+    <Compile Include="Graphics\Structs\Vertex2D.cs" />
+    <Compile Include="Graphics\Structs\WeightedVertex.cs" />
+    <Compile Include="Graphics\Structs\TerrainVertex.cs" />
+    <Compile Include="Instances\Animation\Bone.cs" />
+    <Compile Include="Instances\Attributes\RangeAttribute.cs" />
+    <Compile Include="Instances\Attributes\ScriptSecurity.cs" />
+    <Compile Include="Instances\Attributes\TypeIdAttribute.cs" />
+    <Compile Include="Instances\Animation\Animation.cs" />
+    <Compile Include="Instances\Attributes\YieldFunctionAttribute.cs" />
+    <Compile Include="Instances\Cameras\Behaviours\AttachBehaviour.cs" />
+    <Compile Include="Instances\Cameras\Camera.Behaviour.cs" />
+    <Compile Include="Instances\Cameras\Behaviours\ClassicBehaviour.cs" />
+    <Compile Include="Instances\Cameras\Behaviours\FixedBehaviour.cs" />
+    <Compile Include="Instances\Cameras\Behaviours\FollowBehaviour.cs" />
+    <Compile Include="Instances\Cameras\Behaviours\ScriptableBehaviour.cs" />
+    <Compile Include="Instances\Cameras\Behaviours\TrackBehaviour.cs" />
+    <Compile Include="Instances\Cameras\Behaviours\WatchBehaviour.cs" />
+    <Compile Include="Instances\CanvasWin32.cs" />
+    <Compile Include="Instances\DataStores\GlobalDataStore.cs" />
+    <Compile Include="Instances\DataStores\OrderedDataStore.cs" />
+    <Compile Include="Instances\Diagnostics\DebugStats.cs" />
+    <Compile Include="Instances\Diagnostics\RunningAverageItemDouble.cs" />
+    <Compile Include="Instances\Diagnostics\StatsItem.cs" />
+    <Compile Include="Instances\Forcefield.cs" />
+    <Compile Include="Instances\GUI\Button.cs" />
+    <Compile Include="Instances\Interfaces\ICameraSubject.cs" />
+    <Compile Include="Instances\Interfaces\ICameraUser.cs" />
+    <Compile Include="Instances\Interfaces\IListenable.cs" />
+    <Compile Include="Instances\Meshes\PlaneMesh.cs" />
+    <Compile Include="Instances\Pages\FriendPages.cs" />
+    <Compile Include="Instances\Pages\Pages.cs" />
+    <Compile Include="Instances\Diagnostics\DebugGui.cs" />
+    <Compile Include="Instances\Diagnostics\GeneralDebugGui.cs" />
+    <Compile Include="Instances\GUI\Effects\DropShadowEffect.cs" />
+    <Compile Include="Instances\GUI\GuiContainerBase.cs" />
+    <Compile Include="Instances\GUI\PlayerGui.cs" />
+    <Compile Include="Instances\GUI\ScrollFrame.cs" />
+    <Compile Include="Instances\Interfaces\IAnchorable.cs" />
+    <Compile Include="Instances\Particles\Fire.cs" />
+    <Compile Include="Instances\Particles\ParticleEmitter.cs" />
+    <Compile Include="Instances\Particles\Smoke.cs" />
+    <Compile Include="Instances\Physics\BodyMovers\BodyAngularVelocity.cs" />
+    <Compile Include="Instances\Physics\BodyMovers\BodyGyro.cs" />
+    <Compile Include="Instances\Physics\BodyMovers\BodyPosition.cs" />
+    <Compile Include="Instances\Physics\BodyMovers\BodyThrust.cs" />
+    <Compile Include="Instances\Physics\BodyMovers\BodyVelocity.cs" />
+    <Compile Include="Instances\Physics\BodyMovers\RocketPropulsion.cs" />
+    <Compile Include="Instances\Physics\Constraints\Attachment.cs" />
+    <Compile Include="Instances\Physics\Constraints\BallSocketConstraint.cs" />
+    <Compile Include="Instances\Physics\Constraints\Constraint.cs" />
+    <Compile Include="Instances\Physics\Constraints\HingeConstraint.cs" />
+    <Compile Include="Instances\Physics\Constraints\RodConstraint.cs" />
+    <Compile Include="Instances\Physics\Constraints\RopeConstraint.cs" />
+    <Compile Include="Instances\Physics\Constraints\SpringConstraint.cs" />
+    <Compile Include="Instances\PostEffects\BloomEffect.cs" />
+    <Compile Include="Instances\PostEffects\EyeAdaptationEffect.cs" />
+    <Compile Include="Instances\PostEffects\ColourCorrectionEffect.cs" />
+    <Compile Include="Instances\PostEffects\DepthOfFieldEffect.cs" />
+    <Compile Include="Instances\PostEffects\GodRaysEffect.cs" />
+    <Compile Include="Instances\PostEffects\MotionBlurEffect.cs" />
+    <Compile Include="Instances\PostEffects\PostEffect.cs" />
+    <Compile Include="Instances\PostEffects\AmbientOcclusionEffect.cs" />
+    <Compile Include="Instances\PostEffects\ReflectionEffect.cs" />
+    <Compile Include="Instances\PostEffects\VignetteEffect.cs" />
+    <Compile Include="Instances\Scripting\LuaSourceContainer.cs" />
+    <Compile Include="Instances\Seat.cs" />
+    <Compile Include="Instances\VehicleSeat.cs" />
+    <Compile Include="Services\AnalyticsService.cs" />
+    <Compile Include="Settings\GenericSettings.cs" />
+    <Compile Include="Settings\GlobalSettings.cs" />
+    <Compile Include="Settings\Global\DebugSettings.cs" />
+    <Compile Include="Settings\Global\NetworkSettings.cs" />
+    <Compile Include="Settings\Global\PhysicsSettings.cs" />
+    <Compile Include="Settings\Global\SoundSettings.cs" />
+    <Compile Include="Settings\User\ICustomSettings.cs" />
+    <Compile Include="Settings\User\UserGameSettings.cs" />
+    <Compile Include="Settings\Global\LuaSettings.cs" />
+    <Compile Include="Settings\Global\RenderSettings.cs" />
+    <Compile Include="Settings\UserSettings.cs" />
+    <Compile Include="Instances\Team.cs" />
+    <Compile Include="Instances\Terrain\Cache.cs" />
+    <Compile Include="Instances\Terrain\ISurfaceExtractor.cs" />
+    <Compile Include="Instances\Values\ColourValue.cs" />
+    <Compile Include="Instances\Volume.cs" />
+    <Compile Include="Services\AchievementService.cs" />
+    <Compile Include="Services\ClanService.cs" />
+    <Compile Include="Services\DataStoreService.cs" />
+    <Compile Include="Services\Debris.cs" />
+    <Compile Include="Services\LogService.cs" />
+    <Compile Include="Services\PathfindingService.cs" />
+    <Compile Include="Services\ScriptService.Context.cs" />
+    <Compile Include="Services\ScriptService.Execution.cs" />
+    <Compile Include="Services\Teams.cs" />
+    <Compile Include="Types\ColourSequence.cs" />
+    <Compile Include="Types\NumberRange.cs" />
+    <Compile Include="Types\NumberSequence.cs" />
+    <Compile Include="Types\Plane.cs" />
+    <Compile Include="Types\Sequence.cs" />
+    <Compile Include="Utility\BrickColourCodes.cs" />
+    <Compile Include="Utility\Collections\ChildrenCollection.cs" />
+    <Compile Include="Utility\Extensions\CScoreExtensions.cs" />
+    <Compile Include="Utility\Extensions\LinqExtentions.cs" />
+    <Compile Include="Utility\Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Utility\NVAPI.cs" />
+    <Compile Include="Utility\VorbisDecoder.cs" />
+    <Compile Include="Utility\SimplexNoise.cs" />
+    <Compile Include="Instances\Terrain\TransvoxelExtractor.cs" />
+    <Compile Include="Instances\Terrain\TransvoxelTables.cs" />
+    <Compile Include="Instances\Character.cs" />
+    <Compile Include="Instances\GUI\TextElement.cs" />
+    <Compile Include="Instances\GUI\TextBox.cs" />
+    <Compile Include="Instances\Interfaces\ISingleton.cs" />
+    <Compile Include="Instances\Lights\SpotLight.cs" />
+    <Compile Include="Instances\Animation\Skeleton.cs" />
+    <Compile Include="Instances\Meshes\BlockMesh.cs" />
+    <Compile Include="Instances\Meshes\CylinderMesh.cs" />
+    <Compile Include="Instances\Meshes\FileMesh.cs" />
+    <Compile Include="Instances\Meshes\Mesh.cs" />
+    <Compile Include="Instances\Meshes\SkeletalMesh.cs" />
+    <Compile Include="Instances\Meshes\StaticMesh.cs" />
+    <Compile Include="Instances\Values\EnumValue.cs" />
+    <Compile Include="PhysicsSimulation.cs" />
+    <Compile Include="Services\CacheableContentProvider.cs" />
+    <Compile Include="Services\CoreEnvironment.cs" />
+    <Compile Include="Enums\CascadePartitionMode.cs" />
+    <Compile Include="Enums\CellMaterial.cs" />
+    <Compile Include="Enums\DeliveryMethod.cs" />
+    <Compile Include="Enums\DoFMethod.cs" />
+    <Compile Include="Enums\FlowDirection.cs" />
+    <Compile Include="Enums\FontWeight.cs" />
+    <Compile Include="Enums\HandlesStyle.cs" />
+    <Compile Include="Enums\InputDeviceType.cs" />
+    <Compile Include="Enums\SimulationType.cs" />
+    <Compile Include="Enums\ImageExtendMode.cs" />
+    <Compile Include="Enums\InputState.cs" />
+    <Compile Include="Enums\InputType.cs" />
+    <Compile Include="Enums\Key.cs" />
+    <Compile Include="Enums\MessageChannel.cs" />
+    <Compile Include="Enums\CustomMessageType.cs" />
+    <Compile Include="Enums\InputMethod.cs" />
+    <Compile Include="Enums\PeerType.cs" />
+    <Compile Include="Enums\MouseButton.cs" />
+    <Compile Include="Enums\PlatformId.cs" />
+    <Compile Include="Enums\PlatformType.cs" />
+    <Compile Include="Enums\ReplicationUpdateType.cs" />
+    <Compile Include="Enums\AlignmentY.cs" />
+    <Compile Include="Enums\AlignmentX.cs" />
+    <Compile Include="Enums\WordWrapping.cs" />
+    <Compile Include="Graphics\States\DepthStencilStates.cs" />
+    <Compile Include="Graphics\States\BlendStates.cs" />
+    <Compile Include="Graphics\TextureUtility.cs" />
+    <Compile Include="Graphics\Primitives.cs" />
+    <Compile Include="Graphics\States\RasterizerStates.cs" />
+    <Compile Include="Graphics\RenderObject.cs" />
+    <Compile Include="Graphics\RenderConstants.cs" />
+    <Compile Include="Graphics\States\SamplerStates.cs" />
+    <Compile Include="Graphics\ShaderInclude.cs" />
+    <Compile Include="Graphics\Shaders.cs" />
+    <Compile Include="Graphics\Structs\SpotLightData.cs" />
+    <Compile Include="Instances\Attributes\ContentIdAttribute.cs" />
+    <Compile Include="Instances\Physics\BodyMovers\BodyForce.cs" />
+    <Compile Include="Instances\Physics\BodyMovers\BodyMover.cs" />
+    <Compile Include="Enums\CollisionFidelity.cs" />
+    <Compile Include="Instances\GUI\CoreGui.cs" />
+    <Compile Include="Instances\GUI\Flex.cs" />
+    <Compile Include="Instances\GUI\Adornments\ArcHandles.cs" />
+    <Compile Include="Instances\GUI\Adornments\AxisHandles.cs" />
+    <Compile Include="Instances\GUI\Adornments\BaseHandles.cs" />
+    <Compile Include="Instances\GUI\Stack.cs" />
+    <Compile Include="Settings\Settings.cs" />
+    <Compile Include="Instances\SolidModeling\PartOperation.cs" />
+    <Compile Include="Instances\SolidModeling\IntersectOperation.cs" />
+    <Compile Include="Instances\SolidModeling\NegateOperation.cs" />
+    <Compile Include="Instances\SolidModeling\UnionOperation.cs" />
+    <Compile Include="Instances\GUI\Canvas3D.cs" />
+    <Compile Include="Instances\Attributes\LevelEditorRelatedAttribute.cs" />
+    <Compile Include="Instances\Attributes\ExplorerOrderAttribute.cs" />
+    <Compile Include="Services\HistoryService.cs" />
+    <Compile Include="Services\InsertService.cs" />
+    <Compile Include="Services\ReplayService.cs" />
+    <Compile Include="Instances\Decal.cs" />
+    <Compile Include="Enums\Axis.cs" />
+    <Compile Include="Instances\GUI\BillboardGui.cs" />
+    <Compile Include="Instances\GUI\GuiBase.cs" />
+    <Compile Include="Instances\GUI\GuiBase2D.cs" />
+    <Compile Include="Instances\GUI\GuiBase3D.cs" />
+    <Compile Include="Instances\GUI\LayerCollector.cs" />
+    <Compile Include="Instances\Part.cs" />
+    <Compile Include="Instances\GUI\Adornments\PartAdornment.cs" />
+    <Compile Include="Instances\GUI\Adornments\PVAdornment.cs" />
+    <Compile Include="Instances\Scripting\ScriptDebugger.cs" />
+    <Compile Include="Instances\GUI\Adornments\SelectionBox.cs" />
+    <Compile Include="Instances\GUI\SurfaceGui.cs" />
+    <Compile Include="Instances\Interfaces\IWorld.cs" />
+    <Compile Include="Types\InputObject.cs" />
+    <Compile Include="Instances\Scripting\LocalScript.cs" />
+    <Compile Include="Instances\Terrain\Terrain.cs" />
+    <Compile Include="Instances\Terrain\TerrainRegion.cs" />
+    <Compile Include="Instances\Values\BinaryValue.cs" />
+    <Compile Include="Instances\Physics\Joints\Weld.cs" />
+    <Compile Include="Instances\Lights\Light.cs" />
+    <Compile Include="Instances\Lights\PointLight.cs" />
+    <Compile Include="Enums\NormalId.cs" />
+    <Compile Include="Services\Lighting.cs" />
+    <Compile Include="Instances\Values\CFrameValue.cs" />
+    <Compile Include="Instances\Networking\ClientReplicator.cs" />
+    <Compile Include="Instances\Folder.cs" />
+    <Compile Include="Instances\GUI\Frame.cs" />
+    <Compile Include="Instances\GUI\ScreenGui.cs" />
+    <Compile Include="Instances\GUI\GuiElement.cs" />
+    <Compile Include="Instances\GUI\ImageLabel.cs" />
+    <Compile Include="Instances\GUI\TextLabel.cs" />
+    <Compile Include="Instances\Physics\Joints\JointInstance.cs" />
+    <Compile Include="Instances\Networking\NetworkReplicator.cs" />
+    <Compile Include="Instances\Values\NumberValue.cs" />
+    <Compile Include="Instances\Values\ObjectValue.cs" />
+    <Compile Include="Instances\Networking\RemoteEvent.cs" />
+    <Compile Include="Instances\Networking\RemoteFunction.cs" />
+    <Compile Include="Services\ContentProvider.cs" />
+    <Compile Include="Services\Networking\NetworkClient.cs" />
+    <Compile Include="Services\Networking\NetworkPeer.cs" />
+    <Compile Include="Instances\Networking\ServerReplicator.cs" />
+    <Compile Include="Services\Networking\NetworkServer.cs" />
+    <Compile Include="Instances\Player.cs" />
+    <Compile Include="Services\Players.cs" />
+    <Compile Include="Services\ReplicatedStorage.cs" />
+    <Compile Include="Services\RunService.cs" />
+    <Compile Include="Services\ScriptService.cs" />
+    <Compile Include="Services\SelectionService.cs" />
+    <Compile Include="Services\ServerScriptService.cs" />
+    <Compile Include="Services\ServerStorage.cs" />
+    <Compile Include="Services\SocialService.cs" />
+    <Compile Include="Instances\Sky.cs" />
+    <Compile Include="Instances\Sound.cs" />
+    <Compile Include="Instances\PVInstance.cs" />
+    <Compile Include="Services\SoundService.cs" />
+    <Compile Include="Instances\Values\StringValue.cs" />
+    <Compile Include="Instances\Values\ValueContainer.cs" />
+    <Compile Include="Instances\Values\Vector3Value.cs" />
+    <Compile Include="Instances\Attributes\UncreatableAttribute.cs" />
+    <Compile Include="Services\SolidModelingManager.cs" />
+    <Compile Include="Services\HttpService.cs" />
+    <Compile Include="Graphics\Structs\CameraData.cs" />
+    <Compile Include="Graphics\Structs\PointLightData.cs" />
+    <Compile Include="Graphics\Structs\InstanceRenderData.cs" />
+    <Compile Include="Instances\Cameras\Camera.cs" />
+    <Compile Include="Services\InputService.cs" />
+    <Compile Include="Instances\Interfaces\IRenderable.cs" />
+    <Compile Include="Instances\Model.cs" />
+    <Compile Include="Instances\Scripting\Script.cs" />
+    <Compile Include="Instances\Scripting\ModuleScript.cs" />
+    <Compile Include="Instances\Scripting\SourceContainer.cs" />
+    <Compile Include="Services\StarterGui.cs" />
+    <Compile Include="Services\Workspace.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Enums\GraphicsMode.cs" />
+    <Compile Include="Instances\DataModel.cs" />
+    <Compile Include="Instances\Instance.cs" />
+    <Compile Include="Services\Service.cs" />
+    <Compile Include="Graphics\Renderer.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\Axes.cs" />
+    <Compile Include="Types\CFrame.cs" />
+    <Compile Include="Types\Colour.cs" />
+    <Compile Include="Types\Connection.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Connection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Types\Content.cs" />
+    <Compile Include="Enums\PartType.cs" />
+    <Compile Include="Types\DateTime.cs" />
+    <Compile Include="Types\Faces.cs" />
+    <Compile Include="Types\InstanceReference.cs" />
+    <Compile Include="Types\Matrix3.cs" />
+    <Compile Include="Types\PhysicalProperties.cs" />
+    <Compile Include="Types\Vector4.cs" />
+    <Compile Include="Types\Region3.cs" />
+    <Compile Include="Types\Region3int16.cs" />
+    <Compile Include="Types\Tags.cs" />
+    <Compile Include="Types\TimeSpan.cs" />
+    <Compile Include="Types\Vector3int16.cs" />
+    <Compile Include="Utility\Collections\ConcurrentDictionaryExtensions.cs" />
+    <Compile Include="Utility\Collections\ConcurrentWorkQueue.cs" />
+    <Compile Include="Utility\Comments.cs" />
+    <Compile Include="Utility\Extensions\BinaryArrayExtensions.cs" />
+    <Compile Include="Data\AnimationData.cs" />
+    <Compile Include="Utility\FBX.cs" />
+    <Compile Include="Types\InstanceId.cs" />
+    <Compile Include="Utility\Texture\WEBPImage.cs" />
+    <Compile Include="Utility\Texture\HDRImage.cs" />
+    <Compile Include="Utility\Texture\ITextureFormat.cs" />
+    <Compile Include="Utility\InstanceHelper.cs" />
+    <Compile Include="Utility\Native\Kernel32.cs" />
+    <Compile Include="Utility\Native\User32.cs" />
+    <Compile Include="Utility\Native\VisualC.cs" />
+    <Compile Include="Utility\NeoLuaUtility.cs" />
+    <Compile Include="Utility\Collections\MemorizingMRUCache.cs" />
+    <Compile Include="Utility\Noise.cs" />
+    <Compile Include="Utility\Collections\ObservableConcurrentDictionary.cs" />
+    <Compile Include="Utility\Texture\DDSImage.cs" />
+    <Compile Include="Utility\DirectXUtil.cs" />
+    <Compile Include="Types\Ray.cs" />
+    <Compile Include="Types\Signal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Signal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Types\UDim2.cs" />
+    <Compile Include="Types\Vector2.cs" />
+    <Compile Include="Types\Vector3.cs" />
+    <Compile Include="Graphics\Structs\Vertex.cs" />
+    <Compile Include="Instances\Attributes\EditorVisibleAttribute.cs" />
+    <Compile Include="Utility\Extensions\Extensions.cs" />
+    <Compile Include="Types\IDataType.cs" />
+    <Compile Include="Utility\Mathf.cs" />
+    <Compile Include="Instances\Attributes\ToolboxGroupAttribute.cs" />
+    <Compile Include="Utility\Collections\OrderedSet.cs" />
+    <Compile Include="Utility\Rbxlx.cs" />
+    <Compile Include="Utility\ParentException.cs" />
+    <Compile Include="Utility\RawInputDefinitions.cs" />
+    <Compile Include="Utility\UnitTestDetector.cs" />
+    <Compile Include="Utility\WICTranslate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\githead.txt" />
+    <None Include=".native64\CSteamworks.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Content\Textures\sky512.png" />
+    <EmbeddedResource Include="Content\Textures\sun.png" />
+    <EmbeddedResource Include="Content\Textures\Bokeh_Circle.dds" />
+    <EmbeddedResource Include="Content\Textures\Bokeh_Hex.dds" />
+    <EmbeddedResource Include="Content\Meshes\primitives.fbx" />
+    <EmbeddedResource Include="Content\Scripts\pprint.lua" />
+    <None Include="App.config" />
+    <EmbeddedResource Include="Graphics\Shaders\Common.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\Lighting.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\PCFKernels.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\DeferredCommon.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\IrradianceMapper.shader" />
+    <EmbeddedResource Include="Content\Meshes\capsule.fbx" />
+    <None Include="Content\Scripts\middleclass.lua" />
+    <EmbeddedResource Include="Graphics\Shaders\SMAA.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\SSAO.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\ShadowMapping.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\Skybox.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\PostProcess.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\ScreenSpace.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\ShadowSampling.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\Line.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\Adorn.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\Terrain.shader" />
+    <EmbeddedResource Include="Graphics\Shaders\Standard.shader" />
+    <EmbeddedResource Include="Content\Textures\missing.png" />
+    <EmbeddedResource Include="Content\Textures\noise2.png" />
+    <None Include=".native64\libbulletc.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Types\LuaAction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LuaAction.cs</LastGenOutput>
+    </Content>
+    <Content Include="Types\LuaTuple.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LuaTuple.cs</LastGenOutput>
+    </Content>
+    <Content Include="Types\Connection.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Connection.cs</LastGenOutput>
+    </Content>
+    <Content Include="Types\Signal.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Signal.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="Content\Textures\noise.png" />
+    <None Include=".native64\steam_api64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="FodyWeavers.xml" />
+    <None Include=".native64\Assimp64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Graphics\Shaders\Atmosphere.shader" />
+    <None Include="packages.config" />
+    <None Include="PreBuild.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AssimpNet, Version=3.3.1.0, Culture=neutral, PublicKeyToken=0d51b391f59f42a6, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AssimpNet.3.3.1\lib\net45\AssimpNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BulletSharp">
+      <HintPath>..\..\packages\BulletSharp.0.8\lib\net40-client\BulletSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="C5">
+      <HintPath>..\..\packages\C5.2.4.5947.17249\lib\net45\C5.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Concentus">
+      <HintPath>..\..\packages\Concentus.1.1.1\lib\portable-net45+win+wpa81+wp80\Concentus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CSCore">
+      <HintPath>..\..\packages\CSCore.1.1.0\lib\net35-client\CSCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dynamitey">
+      <HintPath>..\..\packages\Dynamitey.1.0.2.0\lib\net40\Dynamitey.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="INIFileParser">
+      <HintPath>..\..\packages\ini-parser.2.3.0\lib\net20\INIFileParser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>..\..\packages\JetBrains.Annotations.10.1.5\lib\net\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\..\packages\Lidgren.Network.1.0.2\lib\net451\Lidgren.Network.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LZ4">
+      <HintPath>..\..\packages\lz4net.1.0.10.93\lib\net4-client\LZ4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>..\..\packages\DynamicLanguageRuntime.1.1.0\lib\Net45\Microsoft.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\..\packages\DynamicLanguageRuntime.1.1.0\lib\Net45\Microsoft.Scripting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.AspNet">
+      <HintPath>..\..\packages\DynamicLanguageRuntime.1.1.0\lib\Net45\Microsoft.Scripting.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Metadata">
+      <HintPath>..\..\packages\DynamicLanguageRuntime.1.1.0\lib\Net45\Microsoft.Scripting.Metadata.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Neo.Lua">
+      <HintPath>..\..\packages\NeoLua.1.2.8\lib\net45\Neo.Lua.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Neo.Lua.Dbg">
+      <HintPath>..\..\packages\NeoLuaDebug.1.2.8\lib\net45\Neo.Lua.Dbg.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Neo.Lua.Desktop">
+      <HintPath>..\..\packages\NeoLua.1.2.8\lib\net45\Neo.Lua.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.4.0-betaV15\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NVorbis">
+      <HintPath>..\..\packages\NVorbis.0.8.4.0\lib\NVorbis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\..\packages\protobuf-net.2.1.0\lib\net451\protobuf-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX">
+      <HintPath>..\..\packages\SharpDX.3.0.2\lib\net45\SharpDX.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.D3DCompiler">
+      <HintPath>..\..\packages\SharpDX.D3DCompiler.3.0.2\lib\net45\SharpDX.D3DCompiler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.Desktop">
+      <HintPath>..\..\packages\SharpDX.Desktop.3.0.2\lib\net45\SharpDX.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1">
+      <HintPath>..\..\packages\SharpDX.Direct2D1.3.0.2\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11">
+      <HintPath>..\..\packages\SharpDX.Direct3D11.3.0.2\lib\net45\SharpDX.Direct3D11.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D12">
+      <HintPath>..\..\packages\SharpDX.Direct3D12.3.0.2\lib\net45\SharpDX.Direct3D12.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.DirectInput">
+      <HintPath>..\..\packages\SharpDX.DirectInput.3.0.2\lib\net45\SharpDX.DirectInput.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.DXGI">
+      <HintPath>..\..\packages\SharpDX.DXGI.3.0.2\lib\net45\SharpDX.DXGI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics">
+      <HintPath>..\..\packages\SharpDX.Mathematics.3.0.2\lib\net45\SharpDX.Mathematics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.RawInput">
+      <HintPath>..\..\packages\SharpDX.RawInput.3.0.2\lib\net45\SharpDX.RawInput.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.XAudio2">
+      <HintPath>..\..\packages\SharpDX.XAudio2.3.0.2\lib\net45\SharpDX.XAudio2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.XInput">
+      <HintPath>..\..\packages\SharpDX.XInput.3.0.2\lib\net45\SharpDX.XInput.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Steamworks.NET, Version=9.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\Steamworks.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\AssimpNet.3.3.1\build\AssimpNet.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\AssimpNet.3.3.1\build\AssimpNet.targets'))" />
+  </Target>
+  <PropertyGroup>
+    <PreBuildEvent>git rev-parse --short HEAD &gt; githead.txt
+set /p VAR=&lt;githead.txt
+powershell -file "$(ProjectDir)\PreBuild.ps1" %25VAR%25 "$(ProjectDir)"</PreBuildEvent>
+  </PropertyGroup>
+  <UsingTask TaskName="CosturaCleanup" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" TaskFactory="CodeTaskFactory">
+    <ParameterGroup>
+      <Config Output="false" Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem" />
+      <Files Output="false" Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+    </ParameterGroup>
+    <Task Evaluate="true">
+      <Reference xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Include="System.Xml" />
+      <Reference xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Include="System.Xml.Linq" />
+      <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System" />
+      <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System.IO" />
+      <Using xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Namespace="System.Xml.Linq" />
+      <Code xmlns="http://schemas.microsoft.com/developer/msbuild/2003" Type="Fragment" Language="cs"><![CDATA[
+var config = XElement.Load(Config.ItemSpec).Elements("Costura").FirstOrDefault();
+
+if (config == null) return true;
+
+var excludedAssemblies = new List<string>();
+var attribute = config.Attribute("ExcludeAssemblies");
+if (attribute != null)
+    foreach (var item in attribute.Value.Split('|').Select(x => x.Trim()).Where(x => x != string.Empty))
+        excludedAssemblies.Add(item);
+var element = config.Element("ExcludeAssemblies");
+if (element != null)
+    foreach (var item in element.Value.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Where(x => x != string.Empty))
+        excludedAssemblies.Add(item);
+
+var filesToCleanup = Files.Select(f => f.ItemSpec).Where(f => !excludedAssemblies.Contains(Path.GetFileNameWithoutExtension(f), StringComparer.InvariantCultureIgnoreCase));
+
+foreach (var item in filesToCleanup)
+  File.Delete(item);
+]]></Code>
+    </Task>
+  </UsingTask>
+  <Target Name="CleanReferenceCopyLocalPaths" AfterTargets="AfterBuild;NonWinFodyTarget">
+    <CosturaCleanup Config="FodyWeavers.xml" Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" />
+  </Target>
+  <Import Project="..\packages\Fody.1.30.0-beta01\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.30.0-beta01\build\dotnet\Fody.targets')" />
+  <Import Project="..\packages\BulletSharp.0.8\build\net40-client\BulletSharp.targets" Condition="Exists('..\packages\BulletSharp.0.8\build\net40-client\BulletSharp.targets')" />
+  <Import Project="..\..\packages\BulletSharp.0.8\build\net40-client\BulletSharp.targets" Condition="Exists('..\..\packages\BulletSharp.0.8\build\net40-client\BulletSharp.targets')" />
+  <Import Project="..\..\packages\AssimpNet.3.3.1\build\AssimpNet.targets" Condition="Exists('..\..\packages\AssimpNet.3.3.1\build\AssimpNet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

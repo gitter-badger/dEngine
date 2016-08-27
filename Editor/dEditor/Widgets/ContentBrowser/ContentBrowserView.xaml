@@ -1,0 +1,250 @@
+﻿<UserControl x:Class="dEditor.Widgets.ContentBrowser.ContentBrowserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:dEditor.Widgets.ContentBrowser"
+             xmlns:services="clr-namespace:dEditor.Framework.Services"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:converters="clr-namespace:dEditor.Framework.Converters"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviours="clr-namespace:dEditor.Framework.Behaviours"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600" 
+             d:DataContext="{d:DesignInstance local:ContentBrowserViewModel}"
+             Background="#EEE" 
+             IsEnabled="{Binding IsEnabled}">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="ShowDirectoryTreeButonVisConverter" True="Collapsed" False="Visible"/>
+        <converters:BooleanToVisibilityConverter x:Key="DirectoryTreeVisConverter" True="Visible" False="Collapsed"/>
+        <converters:BooleanInverter x:Key="BoolInverter" True="False" False="True"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition>
+                <ColumnDefinition.Style>
+                    <Style TargetType="{x:Type ColumnDefinition}">
+                        <Setter Property="Width" Value="0.6*"/>
+                        <Style.Triggers>
+                            <DataTrigger  Binding="{Binding IsDirectoryTreeVisible, Mode=OneWay}" Value="False">
+                                <Setter Property="Width" Value="0" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ColumnDefinition.Style>
+            </ColumnDefinition>
+            <ColumnDefinition>
+                <ColumnDefinition.Style>
+                    <Style TargetType="{x:Type ColumnDefinition}">
+                        <Setter Property="Width" Value="4"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsDirectoryTreeVisible, Mode=OneWay}" Value="False">
+                                <Setter Property="Width" Value="0" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ColumnDefinition.Style>
+            </ColumnDefinition>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="White" BorderThickness="0, 0, 1, 0" Grid.Column="0" Visibility="{Binding Path=IsDirectoryTreeVisible, Mode=OneWay, Converter={StaticResource DirectoryTreeVisConverter}}">
+            <DockPanel LastChildFill="True">
+                <Grid DockPanel.Dock="Top" Height="26">
+                    <DockPanel LastChildFill="True">
+                        <Button Margin="2, 2, 1, 2" BorderThickness="0" Background="Transparent" Style="{StaticResource ToolBarButtonStyle}" cal:Message.Attach="[Click] = [HideDirectoryTree()]">
+                            <Image Stretch="None" Source="/dEditor;component/Content/Icons/Toolbar/treeview.png" />
+                        </Button>
+                        <TextBox Margin="1, 2, 2, 2" Text="{Binding FolderFilter, UpdateSourceTrigger=PropertyChanged}">
+                            <services:WatermarkService.Watermark>
+                                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center">Search Folders</TextBlock>
+                            </services:WatermarkService.Watermark>
+                        </TextBox>
+                    </DockPanel>
+                </Grid>
+                <Grid DockPanel.Dock="Bottom">
+                    <TreeView ItemsSource="{Binding RootDirectories}" cal:Message.Attach="[SelectionChanged] = [OnDirectorySelected($eventArgs)]" BorderThickness="0">
+                        <i:Interaction.Behaviors>
+                            <behaviours:BindableSelectedItemBehavior SelectedItem="{Binding SelectedDirectory, Mode=TwoWay}" />
+                        </i:Interaction.Behaviors>
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="{x:Type TreeViewItem}">
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                                <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                        <TreeView.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"  Color="Transparent" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}"  Color="Black" />
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+                            <HierarchicalDataTemplate DataType="{x:Type local:DirectoryTreeItem}" ItemsSource="{Binding SubFolders}">
+                                <Border x:Name="Border" BorderThickness="4, 2" Margin="-1" AllowDrop="True" CornerRadius="3">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=Border, Path=IsMouseOver}" Value="true">
+                                                    <Setter Property="Background" Value="#D9D9D9"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource AccentPrimary}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <StackPanel x:Name="Sp" Orientation="Horizontal" Height="{Binding Height}" Margin="0"  UseLayoutRounding="False">
+                                        <Image Source="{Binding Path=Icon, Mode=OneWay}" 
+                                               UseLayoutRounding="True" Stretch="None" 
+                                               Margin="4, 0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Path=Name,Mode=OneWay}" Margin="0,0,4,0" VerticalAlignment="Center" FontSize="{Binding FontSize}">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                            <Setter Property="Foreground" Value="White"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                                                            <Setter Property="Foreground" Value="Black"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
+                </Grid>
+            </DockPanel>
+        </Border>
+        <GridSplitter Grid.Column="1" Background="White" Width="4"/>
+        <Border Background="White" BorderBrush="#CCC" BorderThickness="1, 0, 0, 0" Grid.Column="2">
+            <DockPanel LastChildFill="True">
+                <Grid DockPanel.Dock="Top" Height="26">
+                    <DockPanel LastChildFill="True">
+                        <Button Margin="2, 2, 1, 2" BorderThickness="0" Background="Transparent" Style="{StaticResource ToolBarButtonStyle}" Visibility="{Binding Path=IsDirectoryTreeVisible, Mode=OneWay, Converter={StaticResource ShowDirectoryTreeButonVisConverter}}" cal:Message.Attach="[Click] = [ShowDirectoryTree()]">
+                            <Image Stretch="None" Source="/dEditor;component/Content/Icons/Toolbar/treeview.png" />
+                        </Button>
+                        <Popup x:Name="FilterPopup" StaysOpen="False" IsOpen="{Binding IsChecked, ElementName=FilterToggleButton}" PlacementTarget="{Binding ElementName=FilterToggleButton}" Placement="Top">
+                            <Menu BorderThickness="1" Background="White" BorderBrush="#CCC" Padding="4">
+                                <Menu.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </Menu.ItemsPanel>
+                                <MenuItem Header="Basic" FontSize="12" IsCheckable="True" IsChecked="True"/>
+                                <Separator/>
+                                <MenuItem Header="Animations" FontSize="12" IsCheckable="True" IsChecked="True"/>
+                                <MenuItem Header="Audio" FontSize="12" IsCheckable="True" IsChecked="True"/>
+                                <MenuItem Header="Cubemap" FontSize="12" IsCheckable="True" IsChecked="True"/>
+                                <MenuItem Header="Textures" FontSize="12" IsCheckable="True" IsChecked="True"/>
+                                <MenuItem Header="Skeletal Meshes" FontSize="12" IsCheckable="True" IsChecked="True"/>
+                                <MenuItem Header="Static Meshes" FontSize="12" IsCheckable="True" IsChecked="True"/>
+                                <MenuItem Header="Scripts" FontSize="12" IsCheckable="True" IsChecked="True"/>
+                                <MenuItem Header="Models" FontSize="12" IsCheckable="True" IsChecked="True"/>
+                            </Menu>
+                        </Popup>
+                        <ToggleButton Margin="1, 2" Height="22" x:Name="FilterToggleButton" 
+                                      Style="{StaticResource ToggleButtonStyle}" 
+                                      ContextMenuService.Placement="Bottom" 
+                                      IsHitTestVisible="{Binding ElementName=FilterPopup, Path=IsOpen, Mode=OneWay, Converter={StaticResource BoolInverter}}">
+                            <Grid HorizontalAlignment="Left" Width="64">
+                                <Image Stretch="None" HorizontalAlignment="Left" Source="/dEditor;component/Content/Icons/Toolbar/filter_16xMD.png" />
+                                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="18, 0, 0, 2">Filters</TextBlock>
+                                <Path Width="24" Height="24" Margin="0, -4, -5, 0" Fill="#7D7D7D" HorizontalAlignment="Right" >
+                                    <Path.Data>
+                                        <PathGeometry Figures="M7 10l5 5 5-5z"/>
+                                    </Path.Data>
+                                </Path>
+                            </Grid>
+                        </ToggleButton>
+                        <TextBox Background="White" Margin="1, 2, 2, 2" Text="{Binding FileFilter, UpdateSourceTrigger=PropertyChanged}">
+                            <services:WatermarkService.Watermark>
+                                <TextBlock>Search Content</TextBlock>
+                            </services:WatermarkService.Watermark>
+                        </TextBox>
+                    </DockPanel>
+                </Grid>
+                <Grid DockPanel.Dock="Bottom" Height="22">
+                    <StackPanel Orientation="Horizontal" Margin="4, 0">
+                        <TextBlock Text="{Binding Path=Contents.Count}" VerticalAlignment="Center"/>
+                        <TextBlock Text=" items" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Popup x:Name="ViewOptionsPopup" 
+                           StaysOpen="False" 
+                           Placement="Top"
+                           IsOpen="{Binding IsChecked, ElementName=ViewOptionsButton}" 
+                           PlacementTarget="{Binding ElementName=ViewOptionsButton}">
+                        <Menu BorderThickness="1" Background="White" BorderBrush="#CCC" Padding="4">
+                            <Menu.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </Menu.ItemsPanel>
+                            <MenuItem Header="Show Folders" FontSize="12" IsCheckable="True" IsChecked="{Binding ShowFolders}"/>
+                            <MenuItem Header="Show Non-Content" FontSize="12" IsCheckable="True" IsChecked="{Binding ShowNonContent}"/>
+                        </Menu>
+                    </Popup>
+                    <ToggleButton Height="22" x:Name="ViewOptionsButton" 
+                                      Style="{StaticResource ToggleButtonStyle}" 
+                                      ContextMenuService.Placement="Bottom" 
+                                      HorizontalAlignment="Right"
+                                      IsHitTestVisible="{Binding ElementName=ViewOptionsPopup, Path=IsOpen, Mode=OneWay, Converter={StaticResource BoolInverter}}">
+                        <Grid HorizontalAlignment="Left">
+                            <Image Stretch="None" HorizontalAlignment="Left" Source="/dEditor;component/Content/Icons/Toolbar/gear_16xMD.png" />
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="18, 0, 18, 2">View Options</TextBlock>
+                            <Path Width="24" Height="24" Margin="0, -4, -5, 0" Fill="#7D7D7D" HorizontalAlignment="Right" >
+                                <Path.Data>
+                                    <PathGeometry Figures="M7 10l5 5 5-5z"/>
+                                </Path.Data>
+                            </Path>
+                        </Grid>
+                    </ToggleButton>
+                </Grid>
+                <Grid DockPanel.Dock="Bottom">
+                    <ListBox Margin="0,0,0,0"
+                             SelectionMode="Extended"
+                             ItemsSource="{Binding Path=Contents}"
+                             HorizontalContentAlignment="Left"
+                             VerticalContentAlignment="Top">
+                        <i:Interaction.Behaviors>
+                            <behaviours:ListBoxSelectedItemsBehavior SelectedItems="{Binding SelectedContents, Mode=OneWayToSource}" />
+                        </i:Interaction.Behaviors>
+                        <ListBox.ContextMenu>
+                            <ContextMenu FontSize="12">
+                                <local:FolderOptions Visibility="{Binding Path=IsSelectionAllFolder, Converter={StaticResource BoolToVisConverter}}"/>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.Resources>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Width" Value="72"/>
+                                <Setter Property="Height" Value="107"/>
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:ContentItem}">
+                                <DockPanel LastChildFill="True" Margin="0,0,0,0" cal:Message.Attach="[MouseLeftButtonDown] = [OnMouseLeftButtonDown($eventArgs)]">
+                                    <Image DockPanel.Dock="Top" Height="64" Width="64" Margin="0,0,0,0" VerticalAlignment="Top" Source="{Binding Icon}" />
+                                    <TextBlock Margin="0, 4, 0, 0" DockPanel.Dock="Bottom" Width="64" Text="{Binding Name}" VerticalAlignment="Bottom" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>
+

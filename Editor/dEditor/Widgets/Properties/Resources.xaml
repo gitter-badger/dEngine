@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cal="http://www.caliburnproject.org"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                    xmlns:properties="clr-namespace:dEditor.Widgets.Properties">
+
+    <xctk:InverseBoolConverter x:Key="InverseBoolConverter" />
+
+    <properties:InspectorItemTemplateSelector x:Key="InspectorItemTemplateSelector">
+        <properties:InspectorItemTemplateSelector.LabelledTemplate>
+            <DataTemplate>
+                <Grid IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{Binding Path=(properties:InspectorGrid.PropertyNameColumnWidth), Mode=TwoWay}" MinWidth="50" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="{Binding Path=(properties:InspectorGrid.PropertyValueColumnWidth), Mode=TwoWay}" MinWidth="50" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" 
+                           ToolTip="{Binding Description}"
+                           HorizontalContentAlignment="Left"
+                           VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
+                    </Label>
+                    <properties:SimpleGridSplitter Grid.Column="1" Width="5" ResizeBehavior="PreviousAndNext" />
+                    <Border Grid.Column="2" Padding="0 2 5 2" VerticalAlignment="Center">
+                        <ContentControl cal:View.Model="{Binding}" IsTabStop="False" />
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </properties:InspectorItemTemplateSelector.LabelledTemplate>
+        <properties:InspectorItemTemplateSelector.DefaultTemplate>
+            <DataTemplate>
+                <ContentControl cal:View.Model="{Binding}"
+                                IsEnabled="{Binding IsReadOnly, Converter={StaticResource InverseBoolConverter}}" />
+            </DataTemplate>
+        </properties:InspectorItemTemplateSelector.DefaultTemplate>
+    </properties:InspectorItemTemplateSelector>
+</ResourceDictionary>

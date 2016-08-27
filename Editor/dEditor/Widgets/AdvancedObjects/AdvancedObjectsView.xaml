@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="dEditor.Widgets.AdvancedObjects.AdvancedObjectsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:dEditor.Widgets.AdvancedObjects"
+             xmlns:services="clr-namespace:dEditor.Framework.Services"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance local:AdvancedObjectsViewModel}" 
+             x:Name="RootElement">
+	<UserControl.Resources>
+	</UserControl.Resources>
+	<Grid Background="#EEE">
+		<DockPanel LastChildFill="True">
+			<TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Top" BorderThickness="0, 0, 0, 1">
+				<services:WatermarkService.Watermark>
+					<TextBlock>Search objects</TextBlock>
+				</services:WatermarkService.Watermark>
+			</TextBox>
+			<Border Background="White" BorderBrush="#CCC" DockPanel.Dock="Bottom" BorderThickness="0, 1, 0, 0">
+				<CheckBox Margin="4" IsChecked="{Binding SelectInsertedObject}">Select inserted object</CheckBox>
+			</Border>
+			<ListBox x:Name="ListBox" BorderThickness="0" DockPanel.Dock="Top" Background="Transparent" ItemsSource="{Binding Items}" PreviewMouseDown="ListBox_OnPreviewMouseDown">
+				<ListBox.ItemContainerStyle>
+					<Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource CustomListBoxItem}">
+						<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+						<Setter Property="Height" Value="24"/>
+						<Setter Property="Padding" Value="4"/>
+						<Setter Property="Background" Value="White"/>
+					</Style>
+				</ListBox.ItemContainerStyle>
+				<ListBox.ItemTemplate>
+					<DataTemplate DataType="{x:Type local:ObjectEntry}">
+						<StackPanel Orientation="Horizontal">
+							<Image Width="16" Height="16" Margin="0, 0, 4, 0" Source="{Binding Icon}"/>
+							<TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</DockPanel>
+	</Grid>
+</UserControl>

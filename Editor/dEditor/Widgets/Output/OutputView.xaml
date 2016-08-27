@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="dEditor.Widgets.Output.OutputView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:local="clr-namespace:dEditor.Widgets.Output"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance local:OutputViewModel}">
+    <UserControl.Resources>
+        <Style TargetType="ItemsControl" x:Key="LogViewerStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <ScrollViewer CanContentScroll="True" ScrollChanged="ScrollViewer_ScrollChanged">
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate DataType="{x:Type local:OutputItem}">
+            <Grid IsSharedSizeScope="True">
+                <TextBlock Text="{Binding Message}" Foreground="{Binding Brush}"
+                       TextWrapping="Wrap"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type local:LinkOutputItem}">
+            <Grid IsSharedSizeScope="True">
+                <TextBlock TextWrapping="Wrap">
+                     <Hyperlink NavigateUri="{Binding Url}">
+                         <TextBlock Text="{Binding Path=Message}" Foreground="{Binding Brush}"/>
+                     </Hyperlink>
+                </TextBlock>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type local:CollapsibleOutputItem}">
+            <Grid IsSharedSizeScope="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Text="{Binding Message}" Foreground="{Binding Brush}"
+                       TextWrapping="Wrap"/>
+
+                <ToggleButton x:Name="Expander" Grid.Row="1" Grid.Column="0"
+                          VerticalAlignment="Top" Content="+" HorizontalAlignment="Right"/>
+
+                <ItemsControl ItemsSource="{Binding Contents}" Style="{StaticResource LogViewerStyle}"
+                          Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                          x:Name="Contents" Visibility="Collapsed"/>
+
+            </Grid>
+            <DataTemplate.Triggers>
+                <Trigger SourceName="Expander" Property="IsChecked" Value="True">
+                    <Setter TargetName="Contents" Property="Visibility" Value="Visible"/>
+                    <Setter TargetName="Expander" Property="Content" Value="-"/>
+                </Trigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid  Background="White" >
+        <DockPanel LastChildFill="True">
+            <ToolBar VerticalAlignment="Top" DockPanel.Dock="Top" ToolBarTray.IsLocked="True">
+                <Button Style="{StaticResource ToolBarButtonStyle}" ToolTip="Clear All" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cal:ActionMessage MethodName="Clear" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Image Source="/Content/Icons/Toolbar/Clearwindowcontent_6304.png" Stretch="None"/>
+                </Button>
+                <Separator/>
+                <ToggleButton Style="{StaticResource ToggleButtonStyle}"  IsChecked="{Binding WordWrap, Mode=OneWay}" ToolTip="Toggle Word Wrap" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cal:ActionMessage MethodName="ToggleWordWrap" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Image Width="16" Height="16" Source="/Content/Icons/Toolbar/WordWrap_6774.png"/>
+                </ToggleButton>
+            </ToolBar>
+            <ItemsControl ItemsSource="{Binding Entries}" Style="{StaticResource LogViewerStyle}"/>
+        </DockPanel>
+    </Grid>
+</UserControl>

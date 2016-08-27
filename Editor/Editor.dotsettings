@@ -1,0 +1,11 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">// $FILENAME$ - $PROJECT$&#xD;
+// Copyright (C) $CREATED_YEAR$-$CURRENT_YEAR$ DanDevPC (dandev.sco@gmail.com)&#xD;
+// &#xD;
+// This library is free software: you can redistribute it and/or modify&#xD;
+// it under the terms of the GNU General Public as published by&#xD;
+// the Free Software Foundation, either version 3 of the License, or&#xD;
+// (at your option) any later version.&#xD;
+// &#xD;
+// You should have received a copy of the GNU General Public&#xD;
+// along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</s:String></wpf:ResourceDictionary>

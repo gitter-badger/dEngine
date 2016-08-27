@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="dEditor.Framework.Controls.SplitButton.SplitButton"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:dEditor.Framework.Controls.SplitButton"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="300" d:DesignWidth="300"
+			 x:Name ="SplitButtonRoot"
+			 Width="28" Height="16">
+	<Grid>
+		<Button Height="{Binding Path=Height, ElementName=SplitButtonRoot}" Background="{DynamicResource MaterialDesignBackground}">
+			<Button.Template>
+				<ControlTemplate>
+					<ContentPresenter Content="{Binding Path=Content, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
+				</ControlTemplate>
+			</Button.Template>
+			<DockPanel LastChildFill="True">
+				<Button Width="12" DockPanel.Dock="Right" Height="{Binding Path=Height, ElementName=SplitButtonRoot}">
+					<Button.Template>
+						<ControlTemplate TargetType="{x:Type Button}">
+							<Path x:Name="Arrow" Fill="Black" Data="M0,0L3,3 6,0z" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</ControlTemplate>
+					</Button.Template>
+				</Button>
+				<ContentPresenter Content ="{Binding Path=CustomContent}" DockPanel.Dock="Left"/>
+			</DockPanel>
+		</Button>
+		<Popup>
+			<ContentPresenter Content="{Binding Path=DropDownContent, ElementName=SplitButton}"/>
+		</Popup>
+	</Grid>
+</UserControl>
+

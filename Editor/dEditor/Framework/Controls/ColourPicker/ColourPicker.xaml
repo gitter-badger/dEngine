@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="dEditor.Framework.Controls.ColourPicker.ColourPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:dEditor.Framework.Controls.ColourPicker"
+             xmlns:services="clr-namespace:dEditor.Framework.Services"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviours="clr-namespace:dEditor.Framework.Behaviours"
+             xmlns:utility="clr-namespace:dEditor.Utility"
+             mc:Ignorable="d" 
+             Width="240" Height="250"
+             Background="White"
+             d:DesignHeight="24" d:DesignWidth="300" x:Name="Picker" d:DataContext="{d:DesignInstance local:ColourPicker}">
+    <UserControl.Resources>
+        <utility:BrushConverter x:Key="BrushConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="42"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Canvas x:Name="GradientCanvas" Grid.Row="0" MouseMove="UIElement_OnMouseMove" MouseDown="UIElement_OnMouseDown" MouseUp="GradientCanvas_OnMouseUp">
+            <Canvas.Background>
+                <VisualBrush Viewbox="0.1,0.1,0.8,0.8">
+                    <VisualBrush.Visual>
+                        <Grid Width="100" Height="100">
+                            <Rectangle Fill="{Binding Path=ColourOnlyHue, ElementName=Picker, Converter={StaticResource BrushConverter}}"></Rectangle>
+                            <Rectangle x:Name="WhiteGradient">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="White" Offset="0" />
+                                        <GradientStop Color="Transparent" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Rectangle x:Name="BlackGradient">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="Transparent" Offset="0.0" />
+                                        <GradientStop Color="Black" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Canvas.Background>
+            <Ellipse x:Name="PickerEllipse" Stroke="LightGray" StrokeThickness="1" Fill="White" Width="10" Height="10" Opacity="0.9">
+                <Ellipse.Style>
+                    <Style>
+                        <Setter Property="Canvas.Top" Value="{Binding Top, ElementName=Picker}"/>
+                        <Setter Property="Canvas.Left" Value="{Binding Left, ElementName=Picker}"/>
+                    </Style>
+                </Ellipse.Style>
+            </Ellipse>
+        </Canvas>
+        <Grid Row="1">
+            <DockPanel Margin="4, 0">
+                <Button DockPanel.Dock="Left" ClipToBounds="True" Width="32" Height="32" Style="{DynamicResource MaterialDesignToolButton}">
+                    <Rectangle Width="18" Height="18">
+                        <Rectangle.Fill>
+                            <DrawingBrush>
+                                <DrawingBrush.Drawing>
+                                    <DrawingGroup>
+                                        <DrawingGroup.Children>
+                                            <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M27.6641,9.3418L25.0091,11.9998 27.0091,13.9998 22.1811,18.8278 20.1811,16.8278 11.3661,25.6438 5.7871,28.4338 1.7481,24.3948 4.5381,18.8158 13.3531,9.9998 11.3531,8.0008 16.1801,3.1718 18.1811,5.1718 20.8431,2.5128C21.7961,1.6548 22.9991,1.1828 24.2301,1.1828 25.4911,1.1828 26.6851,1.6798 27.5921,2.5828 29.4431,4.4398 29.4731,7.3428 27.6641,9.3418" />
+                                            <GeometryDrawing Brush="#FF414141" Geometry="F1M22.1807,4C23.3527,2.945 25.0517,2.876 26.1807,4 27.3057,5.128 27.2397,6.83 26.1807,8L22.1807,12 24.1807,14 22.1807,16 14.1817,8 16.1807,6 18.1807,8z M8.1817,20L14.1817,14 16.1807,16 10.1817,22z M14.1817,12L6.1817,20 4.1817,24 6.1817,26 10.1817,24 18.1807,16z" />
+                                            <GeometryDrawing Brush="#FFF0EFF1" Geometry="F1M8.1816,20L14.1816,14 16.1806,16 10.1816,22z" />
+                                        </DrawingGroup.Children>
+                                    </DrawingGroup>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Button>
+                <Border DockPanel.Dock="Left" Background="{Binding Path=Editor.Value, ElementName=Picker, Converter={StaticResource BrushConverter}}" Margin="5, 4, 4, 4" Width="18" Height="18" CornerRadius="4"/>
+                <Grid Margin="6, 0, 0, 0">
+                    <StackPanel VerticalAlignment="Center" ZIndex="5">
+                        <Slider Value="{Binding Hue, ElementName=Picker}" Minimum="0" Maximum="359"/>
+                        <Slider Value="{Binding Alpha, ElementName=Picker}" Minimum="0" Maximum="255"/>
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+        </Grid>
+        <Grid Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBox BorderThickness="0" Background="Transparent" Margin="0, 0" Foreground="#6A6B6C" FontWeight="Medium" FontSize="13" Text="{Binding Hex, ElementName=Picker}">
+                    <i:Interaction.Behaviors>
+                        <behaviours:TextBoxEnterKeyUpdateBehavior />
+                    </i:Interaction.Behaviors>
+                </TextBox>
+                <Label Margin="0, -14" Foreground="#A8ABAC" FontSize="13">Hex</Label>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <StackPanel Width="32">
+                    <TextBox Background="Transparent" Text="{Binding Red, ElementName=Picker
+                        , Converter={StaticResource NumToTextConverter}}" BorderThickness="0"  Margin="0, -5" Foreground="#6A6B6C" FontWeight="Medium" FontSize="13" HorizontalAlignment="Center"></TextBox>
+                    <Label Margin="0, -5" Foreground="#A8ABAC" FontSize="13" HorizontalAlignment="Center">R</Label>
+                </StackPanel>
+                <StackPanel Width="32">
+                    <TextBox Background="Transparent" Text="{Binding Green, ElementName=Picker, Converter={StaticResource NumToTextConverter}}" BorderThickness="0"  Margin="0, -5" Foreground="#6A6B6C" FontWeight="Medium" FontSize="13" HorizontalAlignment="Center"></TextBox>
+                    <Label Margin="0, -5" Foreground="#A8ABAC" FontSize="13" HorizontalAlignment="Center">G</Label>
+                </StackPanel>
+                <StackPanel Width="32">
+                    <TextBox Background="Transparent" Text="{Binding Blue, ElementName=Picker, Converter={StaticResource NumToTextConverter}}" BorderThickness="0"  Margin="0, -5" Foreground="#6A6B6C" FontWeight="Medium" FontSize="13" HorizontalAlignment="Center"></TextBox>
+                    <Label Margin="0, -5" Foreground="#A8ABAC" FontSize="13" HorizontalAlignment="Center">B</Label>
+                </StackPanel>
+                <StackPanel Width="32">
+                    <TextBox Background="Transparent" Text="{Binding Alpha, ElementName=Picker, Converter={StaticResource NumToTextConverter}}" BorderThickness="0"  Margin="0, -5" Foreground="#6A6B6C" FontWeight="Medium" FontSize="13" HorizontalAlignment="Center"></TextBox>
+                    <Label Margin="0, -5" Foreground="#A8ABAC" FontSize="13" HorizontalAlignment="Center">A</Label>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

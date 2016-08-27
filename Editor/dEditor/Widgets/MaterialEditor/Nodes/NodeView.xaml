@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="dEditor.Widgets.MaterialEditor.Nodes.NodeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:dEditor.Widgets.MaterialEditor.Nodes"
+             xmlns:converters="clr-namespace:dEditor.Framework.Converters"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+                x:Name="NodeControl"
+             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance local:NodeViewModel}" Cursor="SizeAll" MouseDown="NodeView_OnMouseDown" PreviewMouseUp="NodeView_OnPreviewMouseUp" PreviewMouseMove="NodeView_OnPreviewMouseMove">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BoolToVisConverter" True="Visible" False="Collapsed"/>
+    </UserControl.Resources>
+    <Border Background="White" CornerRadius="6" MinWidth="78" MinHeight="88" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Border.OpacityMask>
+            <VisualBrush>
+                <VisualBrush.Visual>
+                    <Border 
+                    Background="Black"
+                    SnapsToDevicePixels="True"
+                    CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
+                    Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Border}}"
+                    />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Border.OpacityMask>
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="15" Direction="-90" Opacity="0.2" ShadowDepth="7" />
+        </Border.Effect>
+        <StackPanel ZIndex="{Binding ZIndex, ElementName=NodeControl}">
+            <Grid Background="MediumPurple">
+                <Grid Margin="10, 4, 36, 4">
+                    <TextBlock Foreground="White" Margin="0, 1, 0, 0" Text="{Binding Path=DisplayName}" FontFamily="Roboto" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBlock Foreground="White" Margin="0, 16, 0, 0" Text="{Binding Path=SubName}" Visibility="{Binding SubNameVisible, Converter={StaticResource BoolToVisConverter}}" Opacity="0.8" FontFamily="Roboto Light"/>
+                </Grid>
+                <Button Style="{DynamicResource MaterialDesignToolButton}" Visibility="Collapsed" ClipToBounds="True" Margin="8" Height="13" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Viewbox Width="13">
+                        <Path x:Name="Arrow" Fill="Black" Data="M0,0L3,3 6,0z" RenderTransformOrigin="0.5,0.5" >
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Viewbox>
+                </Button>
+
+            </Grid>
+            <Grid Margin="4">
+                <ContentPresenter Content="{Binding Path=DataContext.NodeContent, ElementName=NodeControl}"/>
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

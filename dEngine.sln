@@ -1,0 +1,93 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.25428.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dEditor", "Editor\dEditor\dEditor.csproj", "{3C44B226-2EC7-4D9F-9470-7C37D6D7F98C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamBuildServer", "Editor\TeamBuildServer\TeamBuildServer.csproj", "{BD36F10C-A6BF-44A0-8956-1FF0348833EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dEngine.Tests", "Engine\dEngine.Tests\dEngine.Tests.csproj", "{94764BBF-EED2-47C7-8A06-23BF17B7D613}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6256F786-9DC6-4181-B5FE-6A0C67E13DE3}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{DB7FC82B-70BC-426B-90A0-9C1B531B36BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Editor", "Editor", "{98D6E90D-DD33-43E6-9479-63A55F973444}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dEngine", "Engine\dEngine\dEngine.csproj", "{9CEB02F6-9904-424A-9263-7AC95A867129}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "docs", "Engine\docs", "{54EBDE7D-A8B6-44B3-9704-5A4D2E66EC89}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_64692"
+		Debug.AspNetCompiler.PhysicalPath = "Engine\docs\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64692\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_64692"
+		Release.AspNetCompiler.PhysicalPath = "Engine\docs\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64692\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "64692"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{C97E31FB-E7D5-4F8B-B7ED-449F2C33F533}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		DumpAPI|x64 = DumpAPI|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C44B226-2EC7-4D9F-9470-7C37D6D7F98C}.Debug|x64.ActiveCfg = Debug|x64
+		{3C44B226-2EC7-4D9F-9470-7C37D6D7F98C}.Debug|x64.Build.0 = Debug|x64
+		{3C44B226-2EC7-4D9F-9470-7C37D6D7F98C}.DumpAPI|x64.ActiveCfg = DumpAPI|x64
+		{3C44B226-2EC7-4D9F-9470-7C37D6D7F98C}.DumpAPI|x64.Build.0 = DumpAPI|x64
+		{3C44B226-2EC7-4D9F-9470-7C37D6D7F98C}.Release|x64.ActiveCfg = Release|x64
+		{3C44B226-2EC7-4D9F-9470-7C37D6D7F98C}.Release|x64.Build.0 = Release|x64
+		{BD36F10C-A6BF-44A0-8956-1FF0348833EE}.Debug|x64.ActiveCfg = Debug|x64
+		{BD36F10C-A6BF-44A0-8956-1FF0348833EE}.Debug|x64.Build.0 = Debug|x64
+		{BD36F10C-A6BF-44A0-8956-1FF0348833EE}.DumpAPI|x64.ActiveCfg = Release|x64
+		{BD36F10C-A6BF-44A0-8956-1FF0348833EE}.DumpAPI|x64.Build.0 = Release|x64
+		{BD36F10C-A6BF-44A0-8956-1FF0348833EE}.Release|x64.ActiveCfg = Release|x64
+		{BD36F10C-A6BF-44A0-8956-1FF0348833EE}.Release|x64.Build.0 = Release|x64
+		{94764BBF-EED2-47C7-8A06-23BF17B7D613}.Debug|x64.ActiveCfg = Debug|x64
+		{94764BBF-EED2-47C7-8A06-23BF17B7D613}.Debug|x64.Build.0 = Debug|x64
+		{94764BBF-EED2-47C7-8A06-23BF17B7D613}.DumpAPI|x64.ActiveCfg = Release|x64
+		{94764BBF-EED2-47C7-8A06-23BF17B7D613}.DumpAPI|x64.Build.0 = Release|x64
+		{94764BBF-EED2-47C7-8A06-23BF17B7D613}.Release|x64.ActiveCfg = Release|x64
+		{94764BBF-EED2-47C7-8A06-23BF17B7D613}.Release|x64.Build.0 = Release|x64
+		{9CEB02F6-9904-424A-9263-7AC95A867129}.Debug|x64.ActiveCfg = Debug|x64
+		{9CEB02F6-9904-424A-9263-7AC95A867129}.Debug|x64.Build.0 = Debug|x64
+		{9CEB02F6-9904-424A-9263-7AC95A867129}.DumpAPI|x64.ActiveCfg = Debug|x64
+		{9CEB02F6-9904-424A-9263-7AC95A867129}.DumpAPI|x64.Build.0 = Debug|x64
+		{9CEB02F6-9904-424A-9263-7AC95A867129}.Release|x64.ActiveCfg = Release|x64
+		{9CEB02F6-9904-424A-9263-7AC95A867129}.Release|x64.Build.0 = Release|x64
+		{54EBDE7D-A8B6-44B3-9704-5A4D2E66EC89}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{54EBDE7D-A8B6-44B3-9704-5A4D2E66EC89}.Debug|x64.Build.0 = Debug|Any CPU
+		{54EBDE7D-A8B6-44B3-9704-5A4D2E66EC89}.DumpAPI|x64.ActiveCfg = Debug|Any CPU
+		{54EBDE7D-A8B6-44B3-9704-5A4D2E66EC89}.DumpAPI|x64.Build.0 = Debug|Any CPU
+		{54EBDE7D-A8B6-44B3-9704-5A4D2E66EC89}.Release|x64.ActiveCfg = Debug|Any CPU
+		{54EBDE7D-A8B6-44B3-9704-5A4D2E66EC89}.Release|x64.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3C44B226-2EC7-4D9F-9470-7C37D6D7F98C} = {98D6E90D-DD33-43E6-9479-63A55F973444}
+		{BD36F10C-A6BF-44A0-8956-1FF0348833EE} = {98D6E90D-DD33-43E6-9479-63A55F973444}
+		{94764BBF-EED2-47C7-8A06-23BF17B7D613} = {DB7FC82B-70BC-426B-90A0-9C1B531B36BD}
+		{9CEB02F6-9904-424A-9263-7AC95A867129} = {DB7FC82B-70BC-426B-90A0-9C1B531B36BD}
+		{54EBDE7D-A8B6-44B3-9704-5A4D2E66EC89} = {C97E31FB-E7D5-4F8B-B7ED-449F2C33F533}
+	EndGlobalSection
+EndGlobal

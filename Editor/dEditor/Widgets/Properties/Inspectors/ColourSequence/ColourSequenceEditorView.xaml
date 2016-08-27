@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="dEditor.Widgets.Properties.Inspectors.ColourSequence.ColourSequenceEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:dEditor.Widgets.Properties.Inspectors.ColourSequence"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance local:ColourSequenceEditorViewModel}"
+             cal:Message.Attach="[PreviewMouseLeftButtonDown] = [OnClick]">
+    <Border BorderThickness="1" BorderBrush="#CCC" Background="White">
+        <Rectangle>
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 0" GradientStops="{Binding GradientStops}">
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+    </Border>
+</UserControl>

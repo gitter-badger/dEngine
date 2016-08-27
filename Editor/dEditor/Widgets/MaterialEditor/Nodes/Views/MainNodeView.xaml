@@ -1,0 +1,30 @@
+﻿<local:NodeContent x:Class="dEditor.Widgets.MaterialEditor.Nodes.Views.MainNodeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:dEditor.Widgets.MaterialEditor.Nodes"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Width="186" Background="White">
+    <Grid Margin="0, 4, 0, 0" VerticalAlignment="Top">
+        <StackPanel HorizontalAlignment="Left">
+            <local:NodePin Mode="In" Header="Base Colour"/>
+            <local:NodePin Mode="In" Header="Metallic"/>
+            <local:NodePin Mode="In" Header="Roughness"/>
+            <local:NodePin Mode="In" Header="Normal"/>
+            <local:NodePin Mode="In" Header="Emission"/>
+            <local:NodePin Mode="In" Header="Transmission"/>
+            <local:NodePin Mode="In" Header="Light Wrapping"/>
+            <local:NodePin Mode="In" Header="Diffuse Ambient Light"/>
+            <local:NodePin Mode="In" Header="Specular Ambient Light"/>
+            <local:NodePin Mode="In" Header="Alpha"/>
+            <local:NodePin Mode="In" Header="Alpha Clip"/>
+            <local:NodePin Mode="In" Header="Refraction"/>
+            <local:NodePin Mode="In" Header="Outline Width"/>
+            <local:NodePin Mode="In" Header="Outline Colour"/>
+            <local:NodePin Mode="In" Header="Vertex Offset"/>
+            <local:NodePin Mode="In" Header="Displacement"/>
+            <local:NodePin Mode="In" Header="Tessellation"/>
+        </StackPanel>
+    </Grid>
+</local:NodeContent>

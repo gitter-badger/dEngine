@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="dEditor.Widgets.ObjectBrowser.ObjectBrowserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:services="clr-namespace:dEditor.Framework.Services"
+             xmlns:utility="clr-namespace:dEditor.Utility"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:splitButton="clr-namespace:dEditor.Framework.Controls.SplitButton"
+             xmlns:behaviours="clr-namespace:dEditor.Framework.Behaviours"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:dEditor.Widgets.ObjectBrowser"
+             mc:Ignorable="d" 
+             x:Name="ObjectBrowserRoot"
+             d:DesignHeight="400" d:DesignWidth="600" d:DataContext="{x:Type local:ObjectBrowserViewModel}">
+    <DockPanel Background="#EEE" LastChildFill="True">
+        <StackPanel DockPanel.Dock="Top" Margin="0, 0, 0, 4">
+            <ToolBar>
+                <splitButton:SplitButton>
+                    <splitButton:SplitButton.DropDownContent>
+                        <Menu Tag="" DataContext="{Binding Path=DataContext, ElementName=ObjectBrowserRoot}">
+                            <MenuItem IsCheckable="True" IsChecked="{Binding ShowServices}">Show Services</MenuItem>
+                            <MenuItem IsCheckable="True" IsChecked="{Binding ShowNonInstanceObjects}">Show Non-Instance Types</MenuItem>
+                            <MenuItem IsCheckable="True" IsChecked="{Binding ShowAbstractTypes}">Show Abstract Types</MenuItem>
+                        </Menu>
+                    </splitButton:SplitButton.DropDownContent>
+                    <Image Source="/dEditor;component/Content/Icons/Toolbar/gear_16xLG.png"/>
+                    
+                </splitButton:SplitButton>
+            </ToolBar>
+            <DockPanel LastChildFill="True">
+                <Button DockPanel.Dock="Right" Style="{StaticResource ToolBarButtonStyle}">
+                    <Image Width="16" Height="16" Stretch="None" Source="/dEditor;component/Content/Icons/Toolbar/Clearwindowcontent_6304.png" />
+                </Button>
+                <TextBox x:Name="SearchBar" Text="{Binding FilterString, UpdateSourceTrigger=PropertyChanged}">
+                    <services:WatermarkService.Watermark>
+                        <TextBlock>Search</TextBlock>
+                    </services:WatermarkService.Watermark>
+                </TextBox>
+            </DockPanel>
+        </StackPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="4"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border x:Name="TypeGrid" Grid.Column="0" Background="White" BorderThickness="1" BorderBrush="#CCC">
+                <ListBox ItemsSource="{Binding FilteredObjects}" SelectedItem="{Binding SelectedObject}" SelectionMode="Single" BorderThickness="0">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="Height" Value="24"/>
+                            <Setter Property="Padding" Value="4"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:Entry}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Stretch="None" Margin="0, 0, 4, 0" Source="{Binding Icon}"/>
+                                <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+            <GridSplitter Grid.Column="2"/>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+                <Border x:Name="MemberGrid" Grid.Row="0" Background="White" BorderThickness="1" BorderBrush="#CCC">
+                    <ListBox ItemsSource="{Binding Members}" SelectionMode="Single" BorderThickness="0">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="Height" Value="24"/>
+                                <Setter Property="Padding" Value="4"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:Entry}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Stretch="None" Margin="0, 0, 4, 0" Source="{Binding Icon}"/>
+                                    <TextBlock VerticalAlignment="Center" Text="{Binding Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+                <GridSplitter Grid.Row="2"/>
+                <Border x:Name="DocsGrid" Grid.Row="2" Background="White"  BorderThickness="1" BorderBrush="#CCC" />
+            </Grid>
+        </Grid>
+    </DockPanel>
+</UserControl>
+
+
+
+
+
+
+

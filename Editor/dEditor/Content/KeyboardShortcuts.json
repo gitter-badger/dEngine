@@ -1,0 +1,151 @@
+[
+  // Tools
+  {
+    "key": "ctrl+1",
+    "command": "tools.selectTool",
+    "when": "viewportFocus"
+  },
+  {
+    "key": "ctrl+2",
+    "command": "tools.moveTool",
+    "when": "viewportFocus"
+  },
+  {
+    "key": "ctrl+3",
+    "command": "tools.scaleTool",
+    "when": "viewportFocus"
+  },
+  {
+    "key": "ctrl+4",
+    "command": "tools.rotateTool",
+    "when": "viewportFocus"
+  },
+  {
+    "key": "alt",
+    "command": "pickerInsideModels",
+    "when": "viewportFocus"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "rotateSelectionY",
+    "when": "viewportFocus"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "rotateSelectionX",
+    "when": "viewportFocus"
+  },
+  {
+    "key": "r",
+    "command": "rotateSelectionY",
+    "when": "viewportFocus && dragging"
+  },
+  {
+    "key": "t",
+    "command": "rotateSelectionX",
+    "when": "viewportFocus && dragging"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "toggleCoordinates",
+    "when": "viewportFocus"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "groupSelection",
+    "when": "viewportFocus && !selectionEmpty"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "ungroupSelection",
+    "when": "viewportFocus && !selectionEmpty"
+  },
+  // Testing
+  {
+    "key": "f5",
+    "command": "playPause"
+  },
+  {
+    "key": "shift+f5",
+    "command": "stop"
+  },
+  {
+    "key": "f7",
+    "command": "startServerWithPlayer"
+  },
+  // Scripting
+  {
+    "key": "tab",
+    "command": "scriptEditor.indent",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "shift+tab",
+    "command": "scriptEditor.outdent",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "scriptEditor.find",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "ctrl+shift+f",
+    "command": "findInAllScripts"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "scriptEditor.findAndReplace",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "scriptEditor.goToLine",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "ctrl+,",
+    "command": "goToScript",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "ctrl+x",
+    "command": "scriptEditor.cutLine",
+    "when": "scriptEditorFocus && textSelectionEmpty"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "scriptEditor.copyLine",
+    "when": "scriptEditorFocus && textSelectionEmpty"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "scriptEditor.format",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "scriptEditor.duplicate",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "scriptEditor.deleteLine",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "scriptEditor.format",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "ctrl+plus",
+    "command": "scriptEditor.format",
+    "when": "scriptEditorFocus"
+  },
+  {
+    "key": "ctrl+minus",
+    "command": "scriptEditor.format",
+    "when": "scriptEditorFocus"
+  }
+]

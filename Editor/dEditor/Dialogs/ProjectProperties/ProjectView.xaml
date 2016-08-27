@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="dEditor.Dialogs.ProjectProperties.ProjectView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:cal="http://www.caliburnproject.org"
+			 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+			 xmlns:system="clr-namespace:System;assembly=mscorlib"
+			 xmlns:local="clr-namespace:dEditor.Dialogs.ProjectProperties"
+			 xmlns:converters="clr-namespace:dEditor.Framework.Converters"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="600" d:DesignWidth="650" 
+			 d:DataContext="{d:DesignInstance local:ProjectViewModel}">
+	<UserControl.Resources>
+		<converters:BooleanToVisibilityConverter x:Key="VisConverter" True="Visible" False="Hidden"/>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="187"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Border BorderThickness="0, 0, 1, 0" BorderBrush="#CCC" Grid.Column="0">
+			<Grid Background="#EEE">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="91*"/>
+					<RowDefinition Height="59*"/>
+				</Grid.RowDefinitions>
+				<StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" Grid.RowSpan="2">
+					<Image Source="/dEditor;component/Content/Icons/default-place-icon.png"  Width="187" Height="187" HorizontalAlignment="Left" VerticalAlignment="Top" />
+					<Border Background="White" BorderThickness="0, 0, 0, 1" BorderBrush="#CCC">
+						<TextBlock ToolTip="New Place" TextWrapping="WrapWithOverflow" FontSize="16" FontFamily="Roboto" Padding="6" Text="{Binding Path=DisplayName, Mode=OneWay}"/>
+					</Border>
+                    <ListBox ItemContainerStyle="{StaticResource CustomListBoxItem}" SelectionMode="Single" BorderThickness="0" ItemsSource="{Binding Path=Pages.Keys}" SelectedItem="{Binding CurrentPage}">
+                        <ListBox.ItemTemplate>
+							<DataTemplate DataType="{x:Type system:String}">
+								<TextBlock Text="{Binding}" FontSize="13" FontWeight="Normal"/>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</StackPanel>
+			</Grid>
+		</Border>
+		<Grid Column="1" Background="White">
+			<Grid Name="Description" Visibility="{Binding Path=Pages[Description]}">
+				<ContentControl x:Name="InspectorContentControl" cal:View.Model="{Binding Properties}"/>
+			</Grid>
+			<Grid Name="Places" Visibility="{Binding Path=Pages[Places]}">
+				<Button Margin="0, 0, 16, 16" Panel.ZIndex="5" Style="{DynamicResource MaterialDesignFloatingActionButton}" Command="{Binding NewPlaceCommand}" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+					<materialDesign:PackIcon Background="{DynamicResource AccentPrimary}" BorderBrush="{DynamicResource AccentPrimary}" Kind="plus" Height="24" Width="24" />
+				</Button>
+                <ListBox DockPanel.Dock="Top" SelectedItem="{Binding SelectedPlace}" ItemsSource="{Binding Places}" BorderThickness="0">
+                    <ListBox.ItemContainerStyle>
+						<Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource CustomListBoxItem}">
+							<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+							<Setter Property="Height" Value="46"/>
+                            <Setter Property="Padding" Value="4"/>
+                            <Setter Property="ContextMenu">
+								<Setter.Value>
+                                    <ContextMenu>
+                                        <MenuItem Header="Make Startup" Click="MakeStartup"/>
+                                        <MenuItem Header="Load" Click="Load"/>
+                                    </ContextMenu>
+								</Setter.Value>
+							</Setter>
+						</Style>
+					</ListBox.ItemContainerStyle>
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="{x:Type local:PlaceItem}">
+                            <StackPanel Orientation="Horizontal" MouseDown="Load">
+								<Image Source="/dEditor;component/Content/Icons/Toolbar/Web_32xSM.png" Width="32" Height="32" Margin="0, 0, 4, 0" Visibility="{Binding Path=IsStartup, Converter={StaticResource BoolToVisConverter}}"/>
+								<StackPanel VerticalAlignment="Center">
+									<TextBlock FontSize="14" VerticalAlignment="Center" Text="{Binding Name}"/>
+									<TextBlock FontSize="11" VerticalAlignment="Center" Text="{Binding DateModified}" Opacity="0.5"/>
+								</StackPanel>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</Grid>
+		</Grid>
+	</Grid>
+</UserControl>
